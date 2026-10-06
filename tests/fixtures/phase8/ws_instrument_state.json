@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "channel": "instrument.state.option.BTC",
+    "data": {
+      "instrument_name": "BTC-30OCT26-100000-C",
+      "state": "locked",
+      "timestamp": 1790353801000
+    }
+  }
+}

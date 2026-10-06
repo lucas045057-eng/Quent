@@ -1,0 +1,41 @@
+{
+  "schema": "QUANT_DASHBOARD_BUILD_V1",
+  "source_files": {
+    "index.html": "5ead315f0e719f8a57212ff7f8500c35d62b9d49bb278f02786c206a668d72b7",
+    "package-lock.json": "603579fbea623ee042105d371d93050364f5b064687fbb1b1bc07356f4f021b7",
+    "package.json": "d2a32a36852168c2f97ccd63cdd1cd1cf012f01365f0840160e781731c1c4906",
+    "scripts/build-stamp.mjs": "9fe78e43f8084135a52c9525f7db7245891393e71ee4a1f9ca206b55e078d606",
+    "src/App.tsx": "50eeedb50be7132cd516475fffec9191046efd897c7a078aedcd68ff7eefe5e9",
+    "src/__tests__/realtime-paper.test.tsx": "573582758b11d0da3124212a5088d4353e08bd430e032078e093b725c05b4737",
+    "src/__tests__/strategy-v2.test.tsx": "e9acb5c7a019970dc24df59ada99732c4ec2f21cd5211a17d7795f1ec85034ec",
+    "src/__tests__/test-helpers.tsx": "8b949c30b2e689401d6a74390aa530bac0da8506d823beb9223d7af36b492fef",
+    "src/__tests__/views.test.tsx": "a01b2fb922dd3da2acffddda1de2b065228602ecaaa4b21e9d9e0c95cb955487",
+    "src/__tests__/workspace.test.tsx": "14e9706ba3f169f1972fc8787c1b0dbbc02c2fefd4419163d73b60900b4dc187",
+    "src/api.ts": "d759f77f1f2f4b6c8ca2506307a314244ebfea5db235bedf0762281b37dcceff",
+    "src/components/Charts.tsx": "5862d31b188b2eb1776e9e54cf044183901d3b3c8f4a072c727f59601cc2ae42",
+    "src/components/JsonPanel.tsx": "6bd6acf110705bc5464ec9fb2bb4b3a1cc834c0e0b06d6199651e5616516d0ff",
+    "src/components/Ui.tsx": "873f1c6ea7b36a350ecad744c2d3d3b35469940f4283c4f5edec97a27775e073",
+    "src/env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "src/main.tsx": "3ee6a7382e2bd1798335ac0c40f6977d23bbca9ea95c3ea749d5fb09e7f7c214",
+    "src/pages/Backtests.tsx": "e342260011cee9897d615a6c2f63183ad7f903b91e1995a05b0d22d991f79575",
+    "src/pages/Decisions.tsx": "fdff331466549d8bf9bad5675ed78a6c9712f5b5003c67e8751e44294e22debc",
+    "src/pages/Health.tsx": "12fc653177866a6e1c38fa3654ae1e18990d3c291e3395f26bc2c16f4473f3bc",
+    "src/pages/Logs.tsx": "93b817a365f0e50f026b1fc66b11b2026a342c360a54868301967c350b4675f0",
+    "src/pages/Overview.tsx": "6d9bc968a2fd0063d19073166266b3cdb52afba02140f345766fa59d2afae943",
+    "src/pages/Paper.tsx": "acd1f62f13f596084c6985a9ed24b3ac2f9e82ca10dce9a14a3ca57daadfe13a",
+    "src/pages/RealtimePaper.tsx": "d0aa7c85b54946af0b6f05da9749ab286b36f46d47bee7aad00f5d7e65384af7",
+    "src/pages/RiskPolicy.tsx": "114e674270e2c4a63bd3093683e8a5bb479698f072732806740632a45d9bddb5",
+    "src/pages/Strategy.tsx": "8b2aaed6305357c4895c9ae60e869d6044c15eff0c740ac73ad436fc61e06b58",
+    "src/styles.css": "b597817f9183dbcbce63c3615dc8e24f5874134b0f71ddede2189866812895c1",
+    "src/test-setup.ts": "e5bf55450f774f714f1deafa75018ed26c5eb3f2ffaf27860738ed48e422e096",
+    "src/types.ts": "0bda293150a27d326866bda974edbfd4acfc632f6f6c9900f1846627cc18e26d",
+    "tsconfig.json": "e78b37c8f42c1825f2f25ec0cc0ebeb728acd9e6158ead09a3cb9a32192679a1",
+    "vite.config.ts": "bf08e169241acb60a195b4c6d3bc5584e9a2d533504c820e0180ca34a409073d"
+  },
+  "assets": {
+    "dist/assets/index-Cfcgc-Kd.css": "1a4cbd417db4dc8ed99c4cc9d1133657ea09eeed4178700ea22076f1a89966f0",
+    "dist/assets/index-J_6YCwaX.js": "076c6426fd1c3b12c7273a500e99d3d94da039a8a1acb1e6180ef3285f0d5877",
+    "dist/assets/Charts-D06uvTSk.js": "e163b0f42b46c94c5f0a324a5eecc72aa667dea5341c61982cb7b61f6d99db85",
+    "dist/index.html": "0cf91d1907db2c21f45d1da2387340064a9b80979ae8edb6f5d97741e22c2388"
+  }
+}

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-phase1"
+version = "0.1.0"
+description = "Paper-only Bitget UTA v3 public market-data Phase 1"
+requires-python = ">=3.12"
+dependencies = [
+  "aiohttp>=3.9,<4",
+  "websockets>=15,<16",
+  "pydantic>=2.7,<3",
+  "psycopg[binary]>=3.2,<4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23"]
+nautilus = ["nautilus_trader==1.231.0"]
+dashboard = ["fastapi==0.141.1", "uvicorn==0.54.0", "httpx==0.28.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.quant_phase1]
+trading_mode = "paper"

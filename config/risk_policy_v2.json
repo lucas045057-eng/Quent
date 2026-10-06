@@ -1,0 +1,31 @@
+{
+  "schema_version": "RISK_CONFIG_V2",
+  "revision": 1,
+  "risk_per_trade_equity_ratio": "0.0025",
+  "max_position_notional_equity_ratio": "0.10",
+  "max_total_exposure_equity_ratio": "0.10",
+  "max_reserved_risk_equity_ratio": "0.0025",
+  "max_leverage": "1",
+  "max_open_positions": 1,
+  "max_open_intents": 1,
+  "sizing_mode": "RISK_BASED",
+  "fixed_notional_equity_ratio": "0.10",
+  "allow_pyramiding": false,
+  "allow_averaging_down": false,
+  "max_hold_seconds_by_horizon": {
+    "schema_version": "STRATEGY_V2",
+    "1_3H": 10800,
+    "3_8H": 10800,
+    "8_24H": 10800
+  },
+  "cooldown_seconds": 1800,
+  "max_spread_bps": "8",
+  "max_slippage_bps": "10",
+  "quote_max_age_seconds": 5,
+  "account_max_age_seconds": 5,
+  "intent_ttl_seconds": 30,
+  "max_risk_amount": null,
+  "max_position_notional_amount": null,
+  "max_total_exposure_amount": null,
+  "max_margin_amount": null
+}

@@ -1,0 +1,280 @@
+{
+  "enabled_patterns": [
+    {
+      "pattern_type": "BREAKOUT_CONFIRMATION",
+      "timeframe": "15m",
+      "direction": "LONG",
+      "required_predicates": [
+        "setup_LONG",
+        "perp_LONG",
+        "spot_LONG",
+        "oi_LONG",
+        "funding_LONG",
+        "market_LONG",
+        "events_LONG"
+      ],
+      "supporting_predicates": [],
+      "contradicting_predicates": [],
+      "hard_conflict_predicates": [],
+      "freshness_rule_ids": [],
+      "coverage_rule_ids": [],
+      "confidence_ceiling": "HIGH",
+      "jev_required_conflict_classes": [],
+      "ttl_rule_id": "paper_ttl",
+      "revalidation_rule_id": "paper_revalidation",
+      "approval_reference": "OWNER_DECISION_2026_09_30",
+      "strategy_profile": "QUANT_PAPER_V1_CONSERVATIVE"
+    },
+    {
+      "pattern_type": "BREAKOUT_CONFIRMATION",
+      "timeframe": "15m",
+      "direction": "SHORT",
+      "required_predicates": [
+        "setup_SHORT",
+        "perp_SHORT",
+        "spot_SHORT",
+        "oi_SHORT",
+        "funding_SHORT",
+        "market_SHORT",
+        "events_SHORT"
+      ],
+      "supporting_predicates": [],
+      "contradicting_predicates": [],
+      "hard_conflict_predicates": [],
+      "freshness_rule_ids": [],
+      "coverage_rule_ids": [],
+      "confidence_ceiling": "HIGH",
+      "jev_required_conflict_classes": [],
+      "ttl_rule_id": "paper_ttl",
+      "revalidation_rule_id": "paper_revalidation",
+      "approval_reference": "OWNER_DECISION_2026_09_30",
+      "strategy_profile": "QUANT_PAPER_V1_CONSERVATIVE"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_id": "setup_LONG",
+      "source_phase": "PHASE1",
+      "source_type": "PAPER_BREAKOUT",
+      "evidence_type": "PRICE_STRUCTURE",
+      "accepted_semantic_codes": [
+        "SETUP_LONG_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "perp_LONG",
+      "source_phase": "PHASE3",
+      "source_type": "PAPER_PERP_FLOW",
+      "evidence_type": "TRADE_FLOW",
+      "accepted_semantic_codes": [
+        "PERP_LONG_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "spot_LONG",
+      "source_phase": "PHASE7",
+      "source_type": "PAPER_SPOT_FLOW",
+      "evidence_type": "ONCHAIN_SPOT_MACRO",
+      "accepted_semantic_codes": [
+        "SPOT_LONG_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "oi_LONG",
+      "source_phase": "PHASE2",
+      "source_type": "PAPER_OI_CHANGE",
+      "evidence_type": "OPEN_INTEREST_STRUCTURE",
+      "accepted_semantic_codes": [
+        "OI_BASE_CHANGE"
+      ],
+      "operator": "GTE",
+      "threshold": "0.0025",
+      "upper_threshold": null,
+      "unit": "RATIO",
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "funding_LONG",
+      "source_phase": "PHASE2",
+      "source_type": "PAPER_FUNDING",
+      "evidence_type": "FUNDING_BASIS_POSITIONING",
+      "accepted_semantic_codes": [
+        "FUNDING_LONG_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "market_LONG",
+      "source_phase": "PHASE5",
+      "source_type": "PAPER_MARKET_CONTEXT",
+      "evidence_type": "MARKET_REGIME",
+      "accepted_semantic_codes": [
+        "MARKET_LONG_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "events_LONG",
+      "source_phase": "PHASE6",
+      "source_type": "PAPER_EVENT_RISK",
+      "evidence_type": "ONCHAIN_SPOT_MACRO",
+      "accepted_semantic_codes": [
+        "EVENTS_LONG_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "setup_SHORT",
+      "source_phase": "PHASE1",
+      "source_type": "PAPER_BREAKOUT",
+      "evidence_type": "PRICE_STRUCTURE",
+      "accepted_semantic_codes": [
+        "SETUP_SHORT_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "perp_SHORT",
+      "source_phase": "PHASE3",
+      "source_type": "PAPER_PERP_FLOW",
+      "evidence_type": "TRADE_FLOW",
+      "accepted_semantic_codes": [
+        "PERP_SHORT_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "spot_SHORT",
+      "source_phase": "PHASE7",
+      "source_type": "PAPER_SPOT_FLOW",
+      "evidence_type": "ONCHAIN_SPOT_MACRO",
+      "accepted_semantic_codes": [
+        "SPOT_SHORT_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "oi_SHORT",
+      "source_phase": "PHASE2",
+      "source_type": "PAPER_OI_CHANGE",
+      "evidence_type": "OPEN_INTEREST_STRUCTURE",
+      "accepted_semantic_codes": [
+        "OI_BASE_CHANGE"
+      ],
+      "operator": "GTE",
+      "threshold": "0.0025",
+      "upper_threshold": null,
+      "unit": "RATIO",
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "funding_SHORT",
+      "source_phase": "PHASE2",
+      "source_type": "PAPER_FUNDING",
+      "evidence_type": "FUNDING_BASIS_POSITIONING",
+      "accepted_semantic_codes": [
+        "FUNDING_SHORT_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "market_SHORT",
+      "source_phase": "PHASE5",
+      "source_type": "PAPER_MARKET_CONTEXT",
+      "evidence_type": "MARKET_REGIME",
+      "accepted_semantic_codes": [
+        "MARKET_SHORT_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    },
+    {
+      "predicate_id": "events_SHORT",
+      "source_phase": "PHASE6",
+      "source_type": "PAPER_EVENT_RISK",
+      "evidence_type": "ONCHAIN_SPOT_MACRO",
+      "accepted_semantic_codes": [
+        "EVENTS_SHORT_CONFIRMED"
+      ],
+      "operator": "PRESENT",
+      "threshold": null,
+      "upper_threshold": null,
+      "unit": null,
+      "missing_behavior": "FAIL_CLOSED"
+    }
+  ],
+  "freshness_rules": [],
+  "coverage_rules": [],
+  "hard_veto_rules": [],
+  "soft_degradation_rules": [],
+  "confidence_ceiling_rules": [],
+  "ttl_rules": [
+    {
+      "rule_id": "paper_ttl",
+      "pattern_type": "BREAKOUT_CONFIRMATION",
+      "timeframe": "15m",
+      "ttl_seconds": 600
+    }
+  ],
+  "revalidation_rules": [
+    {
+      "rule_id": "paper_revalidation",
+      "pattern_type": "BREAKOUT_CONFIRMATION",
+      "timeframe": "15m",
+      "cadence_seconds": 60,
+      "max_runs_per_minute": 1
+    }
+  ],
+  "material_change_rules": [],
+  "jev_conflict_rules": [],
+  "numeric_units": [],
+  "decimal_rules": [],
+  "rounding_rules": [],
+  "hard_veto_precedence": []
+}

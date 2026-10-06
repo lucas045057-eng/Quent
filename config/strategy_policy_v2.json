@@ -1,0 +1,21 @@
+{
+  "schema_version": "STRATEGY_V2",
+  "strategy_version": "QUANT_PAPER_V2",
+  "mode": "PAPER",
+  "allowed_symbols": [
+    "BTCUSDT",
+    "ETHUSDT"
+  ],
+  "data_source": "REAL_PUBLIC_DATA",
+  "minimum_confidence": "HIGH",
+  "horizon_priority": [
+    "1_3H",
+    "3_8H",
+    "8_24H"
+  ],
+  "max_view_age_seconds": 5,
+  "max_spread_bps": "8",
+  "max_trigger_chase_ratio": "0.003",
+  "min_reward_risk_ratio": "1.5",
+  "candidate_ttl_seconds": 30
+}

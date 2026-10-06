@@ -1,0 +1,23 @@
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "channel": "instrument.creation.option.BTC",
+    "data": {
+      "instrument_name": "BTC-30OCT26-100000-C",
+      "instrument_id": 8100201,
+      "base_currency": "BTC",
+      "quote_currency": "BTC",
+      "settlement_currency": "BTC",
+      "price_index": "btc_usd",
+      "kind": "option",
+      "option_type": "call",
+      "strike": 100000,
+      "expiration_timestamp": 1793356800000,
+      "creation_timestamp": 1780000000000,
+      "timestamp": 1790353800000,
+      "is_active": true,
+      "state": "open"
+    }
+  }
+}

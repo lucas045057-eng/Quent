@@ -1,0 +1,151 @@
+services:
+  postgres:
+    image: postgres:16.15-bookworm
+    mem_limit: 768m
+    memswap_limit: 768m
+    restart: "no"
+    environment:
+      POSTGRES_DB: quant
+      POSTGRES_USER: quant
+      POSTGRES_HOST_AUTH_METHOD: trust
+      TZ: UTC
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quant -d quant"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      quant.owner: data-layer-v1-acceptance
+      quant.project: ${DATA_LAYER_ACCEPTANCE_PROJECT:?runner must set an isolated project name}
+      quant.run_id: ${DATA_LAYER_ACCEPTANCE_RUN_ID:?runner must set a unique run id}
+
+  quant-collector:
+    image: ${DATA_LAYER_ACCEPTANCE_IMAGE:?runner must build and pin the local acceptance image}
+    command: ["python", "-m", "quant_phase1.entrypoints.collector"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+    mem_limit: 256m
+    memswap_limit: 256m
+    environment:
+      TRADING_MODE: paper
+      TZ: UTC
+      POSTGRES_DSN: postgresql://quant@postgres:5432/quant
+      PHASE2_ENABLED: "1"
+      PHASE2_MIN_OI_SOURCES: ${PHASE2_MIN_OI_SOURCES:-2}
+      PHASE2_MIN_FUNDING_SOURCES: ${PHASE2_MIN_FUNDING_SOURCES:-2}
+      PHASE3_ENABLED: "1"
+      PHASE4_ENABLED: "1"
+      PHASE5_ENABLED: "1"
+      PHASE6_ENABLED: "1"
+      PHASE6_INGESTION_INTERVAL_SECONDS: "300"
+      PHASE7_ENABLED: ${PHASE7_ENABLED:-1}
+      PHASE7_BITCOIN_RPC_ENABLED: ${PHASE7_BITCOIN_RPC_ENABLED:-0}
+      PHASE7_BITCOIN_RPC_URL: ${PHASE7_BITCOIN_RPC_URL:-}
+      PHASE7_BITCOIN_RPC_AUTH_MODE: ${PHASE7_BITCOIN_RPC_AUTH_MODE:-none}
+      PHASE7_BITCOIN_RPC_API_KEY: ${PHASE7_BITCOIN_RPC_API_KEY:-}
+      PHASE7_BITCOIN_RPC_TIMEOUT_SECONDS: ${PHASE7_BITCOIN_RPC_TIMEOUT_SECONDS:-8}
+      PHASE7_BITCOIN_RPC_REQUESTS_PER_SECOND: ${PHASE7_BITCOIN_RPC_REQUESTS_PER_SECOND:-1}
+      PHASE7_BITCOIN_RPC_MAX_CONCURRENCY: ${PHASE7_BITCOIN_RPC_MAX_CONCURRENCY:-1}
+      PHASE7_BITCOIN_RPC_MAX_RESPONSE_BYTES: ${PHASE7_BITCOIN_RPC_MAX_RESPONSE_BYTES:-33554432}
+      PHASE7_ETHEREUM_RPC_ENABLED: ${PHASE7_ETHEREUM_RPC_ENABLED:-0}
+      PHASE7_ETHEREUM_RPC_URL: ${PHASE7_ETHEREUM_RPC_URL:-}
+      PHASE7_ETHEREUM_RPC_AUTH_MODE: ${PHASE7_ETHEREUM_RPC_AUTH_MODE:-none}
+      PHASE7_ETHEREUM_RPC_TIMEOUT_SECONDS: ${PHASE7_ETHEREUM_RPC_TIMEOUT_SECONDS:-8}
+      PHASE7_ETHEREUM_RPC_REQUESTS_PER_SECOND: ${PHASE7_ETHEREUM_RPC_REQUESTS_PER_SECOND:-1}
+      PHASE7_ETHEREUM_RPC_MAX_CONCURRENCY: ${PHASE7_ETHEREUM_RPC_MAX_CONCURRENCY:-1}
+      PHASE7_ETHEREUM_RPC_MAX_RESPONSE_BYTES: ${PHASE7_ETHEREUM_RPC_MAX_RESPONSE_BYTES:-8388608}
+      PHASE7_CONTEXT_INTERVAL_SECONDS: ${PHASE7_CONTEXT_INTERVAL_SECONDS:-60}
+      PHASE7_CONTEXT_LOOKBACK_HOURS: ${PHASE7_CONTEXT_LOOKBACK_HOURS:-4}
+      PHASE7_CONTEXT_WINDOW_BATCH: ${PHASE7_CONTEXT_WINDOW_BATCH:-16}
+      PHASE7_ADDRESS_LABELS_PATH: /run/quant-phase7-config/address-labels.json
+      PHASE7_WHALE_THRESHOLDS_PATH: /run/quant-phase7-config/whale-thresholds.json
+      PHASE8_OPTIONS_ENABLED: "1"
+      PHASE8_OPTIONS_RETENTION_ENFORCEMENT: "0"
+      BITGET_REST_BASE_URL: ${BITGET_REST_BASE_URL:-https://api.bitget.com}
+      BITGET_WS_PUBLIC_URL: ${BITGET_WS_PUBLIC_URL:-wss://ws.bitget.com/v3/ws/public}
+      PHASE4_BITGET_CLASSIC_REST_BASE_URL: ${PHASE4_BITGET_CLASSIC_REST_BASE_URL:-https://api.bitget.com}
+      PHASE4_BITGET_UTA_REST_BASE_URL: ${PHASE4_BITGET_UTA_REST_BASE_URL:-https://api.bitget.com}
+      PHASE4_BITGET_UTA_WS_PUBLIC_URL: ${PHASE4_BITGET_UTA_WS_PUBLIC_URL:-wss://ws.bitget.com/v3/ws/public}
+      PHASE4_BYBIT_REST_BASE_URL: ${PHASE4_BYBIT_REST_BASE_URL:-https://api.bybit.com}
+      PHASE4_BYBIT_WS_PUBLIC_LINEAR_URL: ${PHASE4_BYBIT_WS_PUBLIC_LINEAR_URL:-wss://stream.bybit.com/v5/public/linear}
+      PHASE4_HYPERLIQUID_INFO_URL: ${PHASE4_HYPERLIQUID_INFO_URL:-https://api.hyperliquid.xyz/info}
+      PHASE7_ACCEPTANCE_DIAGNOSTICS_PATH: /tmp/phase7-collector-diagnostics.json
+    volumes:
+      - ./phase7-config:/run/quant-phase7-config:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      quant.owner: data-layer-v1-acceptance
+      quant.project: ${DATA_LAYER_ACCEPTANCE_PROJECT:?runner must set an isolated project name}
+      quant.run_id: ${DATA_LAYER_ACCEPTANCE_RUN_ID:?runner must set a unique run id}
+
+  quant-engine:
+    image: ${DATA_LAYER_ACCEPTANCE_IMAGE:?runner must build and pin the local acceptance image}
+    command: ["python", "-m", "quant_phase1.entrypoints.engine"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+    mem_limit: 384m
+    memswap_limit: 384m
+    environment:
+      TRADING_MODE: paper
+      TZ: UTC
+      POSTGRES_DSN: postgresql://quant@postgres:5432/quant
+      PHASE2_ENABLED: "1"
+      PHASE2_MIN_OI_SOURCES: ${PHASE2_MIN_OI_SOURCES:-2}
+      PHASE2_MIN_FUNDING_SOURCES: ${PHASE2_MIN_FUNDING_SOURCES:-2}
+      PHASE3_ENABLED: "1"
+      PHASE4_ENABLED: "1"
+      PHASE5_ENABLED: "1"
+      PHASE6_ENABLED: "1"
+      PHASE7_ENABLED: ${PHASE7_ENABLED:-1}
+      PHASE7_CONTEXT_INTERVAL_SECONDS: ${PHASE7_CONTEXT_INTERVAL_SECONDS:-60}
+      PHASE7_CONTEXT_LOOKBACK_HOURS: ${PHASE7_CONTEXT_LOOKBACK_HOURS:-4}
+      PHASE7_CONTEXT_WINDOW_BATCH: ${PHASE7_CONTEXT_WINDOW_BATCH:-16}
+      PHASE8_OPTIONS_ENABLED: "1"
+      PHASE8_OPTIONS_RETENTION_ENFORCEMENT: "0"
+    volumes:
+      - ./phase7-config:/run/quant-phase7-config:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      quant.owner: data-layer-v1-acceptance
+      quant.project: ${DATA_LAYER_ACCEPTANCE_PROJECT:?runner must set an isolated project name}
+      quant.run_id: ${DATA_LAYER_ACCEPTANCE_RUN_ID:?runner must set a unique run id}
+
+volumes:
+  postgres_data:
+    name: ${DATA_LAYER_ACCEPTANCE_VOLUME_NAME:?runner must set a unique volume name}
+    labels:
+      quant.owner: data-layer-v1-acceptance
+      quant.project: ${DATA_LAYER_ACCEPTANCE_PROJECT:?runner must set an isolated project name}
+      quant.run_id: ${DATA_LAYER_ACCEPTANCE_RUN_ID:?runner must set a unique run id}
+
+networks:
+  default:
+    labels:
+      quant.owner: data-layer-v1-acceptance
+      quant.project: ${DATA_LAYER_ACCEPTANCE_PROJECT:?runner must set an isolated project name}
+      quant.run_id: ${DATA_LAYER_ACCEPTANCE_RUN_ID:?runner must set a unique run id}

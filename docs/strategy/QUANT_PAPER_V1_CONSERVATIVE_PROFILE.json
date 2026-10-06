@@ -1,0 +1,89 @@
+{
+  "strategy_profile": "QUANT_PAPER_V1_CONSERVATIVE",
+  "owner_decision_date": "2026-09-30",
+  "status": "OWNER_DECIDED_IMPLEMENTED_PENDING_FINAL_RC",
+  "profitability_validated": false,
+  "execution_universe": [
+    "BTCUSDT",
+    "ETHUSDT"
+  ],
+  "active_pattern": "BREAKOUT_CONFIRMATION",
+  "active_timeframe": "15m",
+  "directions": [
+    "LONG",
+    "SHORT"
+  ],
+  "trading_horizon": "1-3H",
+  "research_only_horizons": [
+    "3-8H",
+    "8-24H"
+  ],
+  "disabled_execution_patterns": [
+    "TREND_CONTINUATION",
+    "LIQUIDATION_REVERSAL"
+  ],
+  "breakout_lookback_bars": 20,
+  "volume_lookback_bars": 20,
+  "volume_ratio_min": "1.25",
+  "breakout_buffer_atr": "0.15",
+  "retest_band_atr": "0.20",
+  "reclaim_buffer_atr": "0.05",
+  "invalidation_buffer_atr": "0.20",
+  "retest_timeout_bars": 4,
+  "max_chase_atr": "0.50",
+  "swing_left": 2,
+  "swing_right": 2,
+  "swing_lookback_1h_bars": 24,
+  "stop_atr_buffer": "0.25",
+  "min_net_R": "1.5",
+  "flow_window": "15m",
+  "flow_confirmation_windows": 2,
+  "delta_ratio_min": "0.05",
+  "oi_window": "15m",
+  "oi_base_change_min": "0.0025",
+  "funding_normalized_8h_long_max": "0.0005",
+  "funding_normalized_8h_short_min": "-0.0005",
+  "decision_ttl_seconds": 600,
+  "execution_intent_ttl_seconds": 30,
+  "revalidation_seconds": 60,
+  "max_hold_seconds": 10800,
+  "cooldown_seconds": 1800,
+  "benchmark_opposition": "1H_AND_4H_VETO",
+  "extreme_volatility": "VETO",
+  "relative_strength_override": false,
+  "macro_blackout_before_seconds": 3600,
+  "macro_blackout_after_seconds": 1800,
+  "security_events": [
+    "SECURITY_EXPLOIT",
+    "HACK",
+    "DELISTING"
+  ],
+  "max_spread_bps": "8",
+  "max_slippage_bps": "10",
+  "entry_type": "MARKET",
+  "time_in_force": "IOC",
+  "exits": [
+    "PROTECTIVE_STOP",
+    "TARGET",
+    "MAX_HOLD",
+    "EMERGENCY_SAFETY"
+  ],
+  "risk_per_trade_equity_ratio": "0.0025",
+  "max_position_notional_equity_ratio": "0.10",
+  "max_leverage": "1",
+  "max_simultaneous_positions": 1,
+  "execution_confidence": [
+    "HIGH"
+  ],
+  "pyramiding": false,
+  "average_down": false,
+  "partial_tp": false,
+  "trailing_stop": false,
+  "core_bad_statuses": [
+    "UNKNOWN",
+    "STALE",
+    "PARTIAL",
+    "CONFLICT"
+  ],
+  "ai_role": "SEMANTIC_AUXILIARY_CONFLICT_REVIEW_ONLY"
+}

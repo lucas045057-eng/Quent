@@ -1,0 +1,71 @@
+{
+  "schema": "phase8_replay_catalog.v1",
+  "origin": "synthetic",
+  "source_capture_timestamp_utc": null,
+  "instruments": {
+    "BTC": [
+      {"instrument_name":"BTC-30OCT26-96000-C","instrument_id":8100203,"base_currency":"BTC","quote_currency":"BTC","settlement_currency":"BTC","price_index":"btc_usd","kind":"option","option_type":"call","strike":96000,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"BTC-30OCT26-96000-P","instrument_id":8100204,"base_currency":"BTC","quote_currency":"BTC","settlement_currency":"BTC","price_index":"btc_usd","kind":"option","option_type":"put","strike":96000,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"BTC-30OCT26-105000-C","instrument_id":8100205,"base_currency":"BTC","quote_currency":"BTC","settlement_currency":"BTC","price_index":"btc_usd","kind":"option","option_type":"call","strike":105000,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"BTC-30OCT26-105000-P","instrument_id":8100206,"base_currency":"BTC","quote_currency":"BTC","settlement_currency":"BTC","price_index":"btc_usd","kind":"option","option_type":"put","strike":105000,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"BTC-27NOV26-100000-C","instrument_id":8100207,"base_currency":"BTC","quote_currency":"BTC","settlement_currency":"BTC","price_index":"btc_usd","kind":"option","option_type":"call","strike":100000,"expiration_timestamp":1795776000000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"BTC-27NOV26-100000-P","instrument_id":8100208,"base_currency":"BTC","quote_currency":"BTC","settlement_currency":"BTC","price_index":"btc_usd","kind":"option","option_type":"put","strike":100000,"expiration_timestamp":1795776000000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"}
+    ],
+    "ETH": [
+      {"instrument_name":"ETH-30OCT26-3850-C","instrument_id":8100303,"base_currency":"ETH","quote_currency":"ETH","settlement_currency":"ETH","price_index":"eth_usd","kind":"option","option_type":"call","strike":3850,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"ETH-30OCT26-3850-P","instrument_id":8100304,"base_currency":"ETH","quote_currency":"ETH","settlement_currency":"ETH","price_index":"eth_usd","kind":"option","option_type":"put","strike":3850,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"ETH-30OCT26-4200-C","instrument_id":8100305,"base_currency":"ETH","quote_currency":"ETH","settlement_currency":"ETH","price_index":"eth_usd","kind":"option","option_type":"call","strike":4200,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"ETH-30OCT26-4200-P","instrument_id":8100306,"base_currency":"ETH","quote_currency":"ETH","settlement_currency":"ETH","price_index":"eth_usd","kind":"option","option_type":"put","strike":4200,"expiration_timestamp":1793356800000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"ETH-27NOV26-4000-C","instrument_id":8100307,"base_currency":"ETH","quote_currency":"ETH","settlement_currency":"ETH","price_index":"eth_usd","kind":"option","option_type":"call","strike":4000,"expiration_timestamp":1795776000000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"},
+      {"instrument_name":"ETH-27NOV26-4000-P","instrument_id":8100308,"base_currency":"ETH","quote_currency":"ETH","settlement_currency":"ETH","price_index":"eth_usd","kind":"option","option_type":"put","strike":4000,"expiration_timestamp":1795776000000,"creation_timestamp":1780000000000,"is_active":true,"state":"open"}
+    ]
+  },
+  "book_summary": {
+    "BTC": [
+      {"instrument_name":"BTC-30OCT26-96000-C","base_currency":"BTC","quote_currency":"BTC","underlying_price":100125.125000000000000001,"underlying_index":"index_price","volume":0.34567890123456789,"open_interest":18.123456789012345,"mark_price":0.0061,"mark_iv":55.1234},
+      {"instrument_name":"BTC-30OCT26-96000-P","base_currency":"BTC","quote_currency":"BTC","underlying_price":100125.125000000000000001,"underlying_index":"index_price","volume":0.4567890123456789,"open_interest":28.23456789012345,"mark_price":0.0071,"mark_iv":59.2345},
+      {"instrument_name":"BTC-30OCT26-105000-C","base_currency":"BTC","quote_currency":"BTC","underlying_price":100125.125000000000000001,"underlying_index":"index_price","volume":0.567890123456789,"open_interest":38.3456789012345,"mark_price":0.0041,"mark_iv":54.3456},
+      {"instrument_name":"BTC-30OCT26-105000-P","base_currency":"BTC","quote_currency":"BTC","underlying_price":100125.125000000000000001,"underlying_index":"index_price","volume":0.67890123456789,"open_interest":48.456789012345,"mark_price":0.0081,"mark_iv":60.4567},
+      {"instrument_name":"BTC-27NOV26-100000-C","base_currency":"BTC","quote_currency":"BTC","underlying_price":100125.125000000000000001,"underlying_index":"index_price","volume":0.7890123456789,"open_interest":58.56789012345,"mark_price":0.0071,"mark_iv":56.5678},
+      {"instrument_name":"BTC-27NOV26-100000-P","base_currency":"BTC","quote_currency":"BTC","underlying_price":100125.125000000000000001,"underlying_index":"index_price","open_interest":68.6789012345,"mark_price":0.0081,"mark_iv":62.6789}
+    ],
+    "ETH": [
+      {"instrument_name":"ETH-30OCT26-3850-C","base_currency":"ETH","quote_currency":"ETH","underlying_price":4012.5,"underlying_index":"index_price","volume":3.123456789012345,"open_interest":46.1234567890123,"mark_price":0.0141,"mark_iv":61.1234},
+      {"instrument_name":"ETH-30OCT26-3850-P","base_currency":"ETH","quote_currency":"ETH","underlying_price":4012.5,"underlying_index":"index_price","volume":4.23456789012345,"open_interest":56.2345678901234,"mark_price":0.0151,"mark_iv":62.2345},
+      {"instrument_name":"ETH-30OCT26-4200-C","base_currency":"ETH","quote_currency":"ETH","underlying_price":4012.5,"underlying_index":"index_price","volume":5.3456789012345,"open_interest":66.3456789012345,"mark_price":0.0121,"mark_iv":60.3456},
+      {"instrument_name":"ETH-30OCT26-4200-P","base_currency":"ETH","quote_currency":"ETH","underlying_price":4012.5,"underlying_index":"index_price","volume":6.456789012345,"open_interest":76.4567890123456,"mark_price":0.0161,"mark_iv":63.4567},
+      {"instrument_name":"ETH-27NOV26-4000-C","base_currency":"ETH","quote_currency":"ETH","underlying_price":4012.5,"underlying_index":"index_price","volume":7.56789012345,"open_interest":86.5678901234567,"mark_price":0.0151,"mark_iv":64.5678},
+      {"instrument_name":"ETH-27NOV26-4000-P","base_currency":"ETH","quote_currency":"ETH","underlying_price":4012.5,"underlying_index":"index_price","volume":8.6789012345,"open_interest":96.6789012345678,"mark_price":0.0161,"mark_iv":65.6789}
+    ]
+  },
+  "markprice_seed": {
+    "BTC": [
+      {"instrument_name":"BTC-30OCT26-100000-C","mark_price":0.005012345678901234,"iv":57.1234,"timestamp":1790353800000},
+      {"instrument_name":"BTC-30OCT26-100000-P","mark_price":0.006012345678901234,"iv":61.2345,"timestamp":1790353800000},
+      {"instrument_name":"BTC-30OCT26-96000-C","mark_price":0.007012345678901234,"iv":58.1234,"timestamp":1790353800000},
+      {"instrument_name":"BTC-30OCT26-96000-P","mark_price":0.007512345678901234,"iv":63.2345,"timestamp":1790353800000},
+      {"instrument_name":"BTC-30OCT26-105000-C","mark_price":0.004112345678901234,"iv":54.3456,"timestamp":1790353800000},
+      {"instrument_name":"BTC-30OCT26-105000-P","mark_price":0.008112345678901234,"iv":60.4567,"timestamp":1790353800000},
+      {"instrument_name":"BTC-27NOV26-100000-C","mark_price":0.009112345678901234,"iv":59.5678,"timestamp":1790353800000},
+      {"instrument_name":"BTC-27NOV26-100000-P","mark_price":0.010112345678901234,"iv":64.6789,"timestamp":1790353800000}
+    ],
+    "ETH": [
+      {"instrument_name":"ETH-30OCT26-4000-C","mark_price":0.012345678901234567,"iv":63.4567,"timestamp":1790353800000},
+      {"instrument_name":"ETH-30OCT26-4000-P","mark_price":0.013456789012345678,"iv":64.5678,"timestamp":1790353800000},
+      {"instrument_name":"ETH-30OCT26-3850-C","mark_price":0.0151,"iv":62.3,"timestamp":1790353800000},
+      {"instrument_name":"ETH-30OCT26-3850-P","mark_price":0.0161,"iv":65.4,"timestamp":1790353800000},
+      {"instrument_name":"ETH-30OCT26-4200-C","mark_price":0.0101,"iv":61.4,"timestamp":1790353800000},
+      {"instrument_name":"ETH-30OCT26-4200-P","mark_price":0.0181,"iv":66.5,"timestamp":1790353800000},
+      {"instrument_name":"ETH-27NOV26-4000-C","mark_price":0.0141,"iv":65.5,"timestamp":1790353800000},
+      {"instrument_name":"ETH-27NOV26-4000-P","mark_price":0.0151,"iv":68.6,"timestamp":1790353800000}
+    ]
+  },
+  "ticker_template_source": "ws_ticker_snapshot.json",
+  "ticker_sparse_change_source": "ws_ticker_change.json",
+  "ticker_out_of_order_source": "ws_ticker_out_of_order.json",
+  "markprice_seed_source": "ws_markprice_seed.json",
+  "markprice_change_source": "ws_markprice_change.json",
+  "markprice_out_of_order_source": "ws_markprice_out_of_order.json",
+  "lifecycle_creation_source": "ws_instrument_creation.json",
+  "lifecycle_state_source": "ws_instrument_state.json"
+}

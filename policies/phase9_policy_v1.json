@@ -1,0 +1,244 @@
+{
+  "schema": "PHASE9_POLICY_MANIFEST_V1",
+  "manifest_version": "2.0.0",
+  "created_at": "2026-10-03T00:00:00Z",
+  "policy_content": {
+    "enabled_patterns": [
+      {
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "15m",
+        "direction": "LONG",
+        "required_predicates": [
+          "v2-pass"
+        ],
+        "supporting_predicates": [],
+        "contradicting_predicates": [],
+        "hard_conflict_predicates": [],
+        "freshness_rule_ids": [
+          "v2-fresh"
+        ],
+        "coverage_rule_ids": [
+          "v2-complete"
+        ],
+        "confidence_ceiling": "HIGH",
+        "jev_required_conflict_classes": [],
+        "ttl_rule_id": "v2-ttl-15m",
+        "revalidation_rule_id": "v2-revalidate-15m",
+        "approval_reference": "V2_DURABLE_EXECUTION_POLICY",
+        "strategy_profile": "QUANT_PAPER_V2",
+        "strategy_policy_digest": "bfaff8d6201b67c543b9c71e0a3eb0920ad9b93ddcdd19748b2e17a2824a6977"
+      },
+      {
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "15m",
+        "direction": "SHORT",
+        "required_predicates": [
+          "v2-pass"
+        ],
+        "supporting_predicates": [],
+        "contradicting_predicates": [],
+        "hard_conflict_predicates": [],
+        "freshness_rule_ids": [
+          "v2-fresh"
+        ],
+        "coverage_rule_ids": [
+          "v2-complete"
+        ],
+        "confidence_ceiling": "HIGH",
+        "jev_required_conflict_classes": [],
+        "ttl_rule_id": "v2-ttl-15m",
+        "revalidation_rule_id": "v2-revalidate-15m",
+        "approval_reference": "V2_DURABLE_EXECUTION_POLICY",
+        "strategy_profile": "QUANT_PAPER_V2",
+        "strategy_policy_digest": "bfaff8d6201b67c543b9c71e0a3eb0920ad9b93ddcdd19748b2e17a2824a6977"
+      },
+      {
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "1H",
+        "direction": "LONG",
+        "required_predicates": [
+          "v2-pass"
+        ],
+        "supporting_predicates": [],
+        "contradicting_predicates": [],
+        "hard_conflict_predicates": [],
+        "freshness_rule_ids": [
+          "v2-fresh"
+        ],
+        "coverage_rule_ids": [
+          "v2-complete"
+        ],
+        "confidence_ceiling": "HIGH",
+        "jev_required_conflict_classes": [],
+        "ttl_rule_id": "v2-ttl-1H",
+        "revalidation_rule_id": "v2-revalidate-1H",
+        "approval_reference": "V2_DURABLE_EXECUTION_POLICY",
+        "strategy_profile": "QUANT_PAPER_V2",
+        "strategy_policy_digest": "bfaff8d6201b67c543b9c71e0a3eb0920ad9b93ddcdd19748b2e17a2824a6977"
+      },
+      {
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "1H",
+        "direction": "SHORT",
+        "required_predicates": [
+          "v2-pass"
+        ],
+        "supporting_predicates": [],
+        "contradicting_predicates": [],
+        "hard_conflict_predicates": [],
+        "freshness_rule_ids": [
+          "v2-fresh"
+        ],
+        "coverage_rule_ids": [
+          "v2-complete"
+        ],
+        "confidence_ceiling": "HIGH",
+        "jev_required_conflict_classes": [],
+        "ttl_rule_id": "v2-ttl-1H",
+        "revalidation_rule_id": "v2-revalidate-1H",
+        "approval_reference": "V2_DURABLE_EXECUTION_POLICY",
+        "strategy_profile": "QUANT_PAPER_V2",
+        "strategy_policy_digest": "bfaff8d6201b67c543b9c71e0a3eb0920ad9b93ddcdd19748b2e17a2824a6977"
+      },
+      {
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "4H",
+        "direction": "LONG",
+        "required_predicates": [
+          "v2-pass"
+        ],
+        "supporting_predicates": [],
+        "contradicting_predicates": [],
+        "hard_conflict_predicates": [],
+        "freshness_rule_ids": [
+          "v2-fresh"
+        ],
+        "coverage_rule_ids": [
+          "v2-complete"
+        ],
+        "confidence_ceiling": "HIGH",
+        "jev_required_conflict_classes": [],
+        "ttl_rule_id": "v2-ttl-4H",
+        "revalidation_rule_id": "v2-revalidate-4H",
+        "approval_reference": "V2_DURABLE_EXECUTION_POLICY",
+        "strategy_profile": "QUANT_PAPER_V2",
+        "strategy_policy_digest": "bfaff8d6201b67c543b9c71e0a3eb0920ad9b93ddcdd19748b2e17a2824a6977"
+      },
+      {
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "4H",
+        "direction": "SHORT",
+        "required_predicates": [
+          "v2-pass"
+        ],
+        "supporting_predicates": [],
+        "contradicting_predicates": [],
+        "hard_conflict_predicates": [],
+        "freshness_rule_ids": [
+          "v2-fresh"
+        ],
+        "coverage_rule_ids": [
+          "v2-complete"
+        ],
+        "confidence_ceiling": "HIGH",
+        "jev_required_conflict_classes": [],
+        "ttl_rule_id": "v2-ttl-4H",
+        "revalidation_rule_id": "v2-revalidate-4H",
+        "approval_reference": "V2_DURABLE_EXECUTION_POLICY",
+        "strategy_profile": "QUANT_PAPER_V2",
+        "strategy_policy_digest": "bfaff8d6201b67c543b9c71e0a3eb0920ad9b93ddcdd19748b2e17a2824a6977"
+      }
+    ],
+    "predicates": [
+      {
+        "predicate_id": "v2-pass",
+        "source_phase": "PHASE6",
+        "source_type": "STRATEGY_V2_RESULT",
+        "evidence_type": "V2_EXECUTION_POLICY",
+        "accepted_semantic_codes": [
+          "EXECUTION_POLICY_PASS"
+        ],
+        "operator": "PRESENT",
+        "threshold": null,
+        "upper_threshold": null,
+        "unit": null,
+        "missing_behavior": "FAIL_CLOSED"
+      }
+    ],
+    "freshness_rules": [
+      {
+        "rule_id": "v2-fresh",
+        "source_phase": "PHASE6",
+        "source_type": "STRATEGY_V2_RESULT",
+        "maximum_age_seconds": 5,
+        "required": true,
+        "stale_behavior": "FAIL_CLOSED"
+      }
+    ],
+    "coverage_rules": [
+      {
+        "rule_id": "v2-complete",
+        "source_phase": "PHASE6",
+        "source_type": "STRATEGY_V2_RESULT",
+        "accepted_coverage_statuses": [
+          "SOURCE_DECLARED_COMPLETE"
+        ],
+        "minimum_coverage_ratio": null,
+        "ratio_unit": null
+      }
+    ],
+    "hard_veto_rules": [],
+    "soft_degradation_rules": [],
+    "confidence_ceiling_rules": [],
+    "ttl_rules": [
+      {
+        "rule_id": "v2-ttl-15m",
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "15m",
+        "ttl_seconds": 30
+      },
+      {
+        "rule_id": "v2-ttl-1H",
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "1H",
+        "ttl_seconds": 30
+      },
+      {
+        "rule_id": "v2-ttl-4H",
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "4H",
+        "ttl_seconds": 30
+      }
+    ],
+    "revalidation_rules": [
+      {
+        "rule_id": "v2-revalidate-15m",
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "15m",
+        "cadence_seconds": 30,
+        "max_runs_per_minute": 2
+      },
+      {
+        "rule_id": "v2-revalidate-1H",
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "1H",
+        "cadence_seconds": 30,
+        "max_runs_per_minute": 2
+      },
+      {
+        "rule_id": "v2-revalidate-4H",
+        "pattern_type": "MARKET_EVIDENCE_CHAIN",
+        "timeframe": "4H",
+        "cadence_seconds": 30,
+        "max_runs_per_minute": 2
+      }
+    ],
+    "material_change_rules": [],
+    "jev_conflict_rules": [],
+    "numeric_units": [],
+    "decimal_rules": [],
+    "rounding_rules": [],
+    "hard_veto_precedence": []
+  },
+  "manifest_digest": "addc118d9bad8a4edac7129a0812409e83bbbab4a9c5e82fa9ee2c6f322d5bfd"
+}

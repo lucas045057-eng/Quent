@@ -1,0 +1,3 @@
+ALTER TABLE klines
+    ADD COLUMN IF NOT EXISTS source TEXT NOT NULL DEFAULT 'bitget_v3_rest',
+    ADD COLUMN IF NOT EXISTS exchange TEXT NOT NULL DEFAULT 'bitget';

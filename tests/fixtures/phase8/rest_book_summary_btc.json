@@ -1,0 +1,37 @@
+{
+  "jsonrpc": "2.0",
+  "id": 8104,
+  "result": [
+    {
+      "instrument_name": "BTC-30OCT26-100000-C",
+      "base_currency": "BTC",
+      "quote_currency": "BTC",
+      "underlying_price": 100125.125000000000000001,
+      "underlying_index": "index_price",
+      "volume": 0.123456789012345678901,
+      "open_interest": 12.34567890123456789,
+      "mark_price": 0.005012345678901234,
+      "mark_iv": 57.1234,
+      "bid_price": null,
+      "ask_price": 0.0052,
+      "mid_price": 0.0051,
+      "last": 0.0050,
+      "creation_timestamp": 1780000000000
+    },
+    {
+      "instrument_name": "BTC-30OCT26-100000-P",
+      "base_currency": "BTC",
+      "quote_currency": "BTC",
+      "underlying_price": 100125.125000000000000001,
+      "underlying_index": "index_price",
+      "volume": 0.234567890123456789012,
+      "open_interest": 23.4567890123456789,
+      "mark_price": 0.006012345678901234,
+      "mark_iv": 61.2345,
+      "ask_price": 0.0062,
+      "mid_price": null,
+      "last": 0.0060,
+      "creation_timestamp": 1780000000000
+    }
+  ]
+}

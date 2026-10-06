@@ -1,0 +1,36 @@
+{
+  "jsonrpc": "2.0",
+  "id": 8103,
+  "result": [
+    {
+      "instrument_name": "ETH-30OCT26-4000-C",
+      "instrument_id": 8100301,
+      "base_currency": "ETH",
+      "quote_currency": "ETH",
+      "settlement_currency": "ETH",
+      "price_index": "eth_usd",
+      "kind": "option",
+      "option_type": "call",
+      "strike": 4000.125,
+      "expiration_timestamp": 1793356800000,
+      "creation_timestamp": 1780000000000,
+      "is_active": true,
+      "state": "open"
+    },
+    {
+      "instrument_name": "ETH-30OCT26-4000-P",
+      "instrument_id": 8100302,
+      "base_currency": "ETH",
+      "quote_currency": "ETH",
+      "settlement_currency": "ETH",
+      "price_index": "eth_usd",
+      "kind": "option",
+      "option_type": "put",
+      "strike": 4000.125,
+      "expiration_timestamp": 1793356800000,
+      "creation_timestamp": 1780000000000,
+      "is_active": true,
+      "state": "open"
+    }
+  ]
+}

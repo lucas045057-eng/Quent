@@ -1,0 +1,67 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: quant
+      POSTGRES_USER: quant
+      POSTGRES_PASSWORD: quant
+    mem_limit: 384m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    volumes:
+      - phase1_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quant -d quant"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  quant-collector:
+    build: .
+    command: ["python", "-m", "quant_phase1.entrypoints.collector"]
+    environment:
+      # TRADING_MODE=paper
+      TRADING_MODE: paper
+      QUANT_COLLECTOR_READINESS_SYMBOLS: "${QUANT_COLLECTOR_READINESS_SYMBOLS:-BTCUSDT,ETHUSDT}"
+      BITGET_REST_BASE_URL: https://api.bitget.com
+      BITGET_WS_PUBLIC_URL: wss://ws.bitget.com/v3/ws/public
+      PHASE3_ENABLED: "0"
+      POSTGRES_DSN: postgresql://quant:quant@postgres:5432/quant
+    depends_on:
+      postgres:
+        condition: service_healthy
+    mem_limit: 256m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    restart: on-failure
+
+  quant-engine:
+    build: .
+    command: ["python", "-m", "quant_phase1.entrypoints.engine"]
+    environment:
+      # TRADING_MODE=paper
+      TRADING_MODE: paper
+      PHASE2_ENABLED: "1"
+      PHASE2_MIN_OI_SOURCES: "2"
+      PHASE2_MIN_FUNDING_SOURCES: "2"
+      PHASE3_ENABLED: "0"
+      POSTGRES_DSN: postgresql://quant:quant@postgres:5432/quant
+    depends_on:
+      postgres:
+        condition: service_healthy
+    mem_limit: 384m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    restart: on-failure
+
+volumes:
+  phase1_pgdata:

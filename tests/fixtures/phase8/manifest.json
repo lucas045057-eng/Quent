@@ -1,0 +1,50 @@
+{
+  "fixture_set": "phase8-deribit-public-source-contract-v1",
+  "origin": "synthetic minimized examples matching reviewed official public response contracts",
+  "created_at_utc": "2026-09-25T16:30:53Z",
+  "replay_fixture": {
+    "filename": "replay_chain.json",
+    "origin": "synthetic",
+    "sha256": "07209a26df428d36a3a0374d239c5796ed5eddde2f2d46d65d20de740b18992b"
+  },
+  "replay_source_templates": [
+    "ws_markprice_seed.json",
+    "ws_markprice_change.json",
+    "ws_markprice_out_of_order.json",
+    "ws_ticker_snapshot.json",
+    "ws_ticker_change.json",
+    "ws_ticker_out_of_order.json",
+    "ws_instrument_creation.json",
+    "ws_instrument_state.json"
+  ],
+  "methods": [
+    "public/get_index_price_names",
+    "public/get_instruments",
+    "public/get_book_summary_by_currency"
+  ],
+  "channels": [
+    "instrument.creation.option.{currency}",
+    "instrument.state.option.{currency}",
+    "markprice.options.{index_name}",
+    "incremental_ticker.{instrument_name}"
+  ],
+  "schema": "JSON-RPC 2.0",
+  "source_capture_timestamp_utc": null,
+  "fixtures": {
+    "replay_chain.json": "07209a26df428d36a3a0374d239c5796ed5eddde2f2d46d65d20de740b18992b",
+    "rest_index_names.json": "cc53e21157dfc9b6fb67da6626b9241e3edd1169fbddec50981933eb11135061",
+    "rest_instruments_btc.json": "5153d444d839640a5a83974755b3db045d1cbd41ec888aceb6bebf2458480802",
+    "rest_instruments_eth.json": "e285649bf33d3c150ab13a1758fa2d3fba39037bc71b5085a63d65b128c15d63",
+    "rest_book_summary_btc.json": "7461728c1318f011b053b4ae96f2dd077bebb869d315d5327653e93a238f0f2e",
+    "rest_book_summary_eth.json": "3fc2949534ed5bb576084ec634c6f0ac0eee3eb685d04a285d82c23d4ef9ab98",
+    "ws_instrument_creation.json": "077024025574a5551448d0dd795797a53c513d345266608acc48f78fe0419795",
+    "ws_instrument_state.json": "5f627d07628b2ae17c068f30b02f8b681bdf35f3ff1990230f02adb7065d0ecb",
+    "ws_markprice_change.json": "ebfc473ad964f71cd3fa26db6a51711457ab1d9852f8aaf36c4b5b32bcc90cec",
+    "ws_markprice_out_of_order.json": "bd3bcdd6d130af3d6e0209c4fca9e29c794f3cc271abde3299044f3ab6de9bf9",
+    "ws_markprice_seed.json": "094232da93a98ed52668eec0a2c0664ffcbfd691e0e0a6c3e20ba8f2385251b4",
+    "ws_ticker_change.json": "7b051a3e645b3eacecab35b25a86665fb8453e8a841e772713b0c9f304f3dab9",
+    "ws_ticker_out_of_order.json": "cf350b0f2a3d9fefc237f416c74ccbd3f61c975f2f9696b356d4281c268ffd3f",
+    "ws_ticker_snapshot.json": "fe1e40ecad61667c546c9c8bc807b385a6f565c1f3b93ec9b12bcb59e79dab54"
+  },
+  "contains_credentials_or_private_data": false
+}

@@ -1,0 +1,1 @@
+"""Public derivative-data adapters."""

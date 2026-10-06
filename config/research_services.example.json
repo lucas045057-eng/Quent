@@ -1,0 +1,21 @@
+{
+  "schema_version": "RESEARCH_SERVICES_V2",
+  "coinalyze": {
+    "enabled": true,
+    "base_url": "https://api.coinalyze.net/v1",
+    "api_key": "",
+    "max_markets": 2
+  },
+  "openai": {
+    "enabled": true,
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "timeout_seconds": 10,
+    "max_output_tokens": 4096,
+    "max_input_bytes": 262144,
+    "input_usd_per_million": "0.75",
+    "cached_input_usd_per_million": "0.075",
+    "output_usd_per_million": "4.50"
+  }
+}

@@ -1,0 +1,79 @@
+services:
+  postgres:
+    image: ${PHASE7_ACCEPTANCE_POSTGRES_IMAGE:-postgres:16-alpine}
+    mem_limit: 768m
+    environment:
+      POSTGRES_DB: quant
+      POSTGRES_USER: quant
+      POSTGRES_HOST_AUTH_METHOD: trust
+      TZ: UTC
+    volumes:
+      - phase7_acceptance_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quant -d quant"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: "no"
+
+  quant-collector:
+    image: ${PHASE7_ACCEPTANCE_IMAGE:?Set PHASE7_ACCEPTANCE_IMAGE to the locally built Phase 7 acceptance image}
+    command: ["python", "-m", "quant_phase1.entrypoints.collector"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      TRADING_MODE: paper
+      PHASE2_ENABLED: "1"
+      PHASE3_ENABLED: "1"
+      PHASE4_ENABLED: "1"
+      PHASE5_ENABLED: "1"
+      PHASE6_ENABLED: "1"
+      PHASE6_INGESTION_INTERVAL_SECONDS: "300"
+      PHASE7_ENABLED: "${PHASE7_ENABLED:-1}"
+      PHASE7_BITCOIN_RPC_ENABLED: "${PHASE7_BITCOIN_RPC_ENABLED:-0}"
+      PHASE7_BITCOIN_RPC_URL: "${PHASE7_BITCOIN_RPC_URL:-}"
+      PHASE7_BITCOIN_RPC_AUTH_MODE: "${PHASE7_BITCOIN_RPC_AUTH_MODE:-none}"
+      PHASE7_BITCOIN_RPC_API_KEY: "${PHASE7_BITCOIN_RPC_API_KEY:-}"
+      PHASE7_BITCOIN_RPC_USERNAME: "${PHASE7_BITCOIN_RPC_USERNAME:-}"
+      PHASE7_BITCOIN_RPC_PASSWORD: "${PHASE7_BITCOIN_RPC_PASSWORD:-}"
+      PHASE7_BITCOIN_RPC_TIMEOUT_SECONDS: "${PHASE7_BITCOIN_RPC_TIMEOUT_SECONDS:-8}"
+      PHASE7_BITCOIN_RPC_REQUESTS_PER_SECOND: "${PHASE7_BITCOIN_RPC_REQUESTS_PER_SECOND:-1}"
+      PHASE7_BITCOIN_RPC_MAX_CONCURRENCY: "${PHASE7_BITCOIN_RPC_MAX_CONCURRENCY:-1}"
+      PHASE7_BITCOIN_RPC_MAX_RESPONSE_BYTES: "${PHASE7_BITCOIN_RPC_MAX_RESPONSE_BYTES:-33554432}"
+      PHASE7_ETHEREUM_RPC_ENABLED: "${PHASE7_ETHEREUM_RPC_ENABLED:-0}"
+      PHASE7_ETHEREUM_RPC_URL: "${PHASE7_ETHEREUM_RPC_URL:-}"
+      PHASE7_ETHEREUM_RPC_AUTH_MODE: "${PHASE7_ETHEREUM_RPC_AUTH_MODE:-none}"
+      PHASE7_ETHEREUM_RPC_TIMEOUT_SECONDS: "${PHASE7_ETHEREUM_RPC_TIMEOUT_SECONDS:-8}"
+      PHASE7_ETHEREUM_RPC_REQUESTS_PER_SECOND: "${PHASE7_ETHEREUM_RPC_REQUESTS_PER_SECOND:-1}"
+      PHASE7_ETHEREUM_RPC_MAX_CONCURRENCY: "${PHASE7_ETHEREUM_RPC_MAX_CONCURRENCY:-1}"
+      PHASE7_ACCEPTANCE_DIAGNOSTICS_PATH: /tmp/phase7-collector-diagnostics.json
+      POSTGRES_DSN: postgresql://quant@postgres:5432/quant
+      TZ: UTC
+    mem_limit: 256m
+    restart: "no"
+
+  quant-engine:
+    image: ${PHASE7_ACCEPTANCE_IMAGE:?Set PHASE7_ACCEPTANCE_IMAGE to the locally built Phase 7 acceptance image}
+    command: ["python", "-m", "quant_phase1.entrypoints.engine"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      TRADING_MODE: paper
+      PHASE2_ENABLED: "1"
+      PHASE3_ENABLED: "1"
+      PHASE4_ENABLED: "1"
+      PHASE5_ENABLED: "1"
+      PHASE6_ENABLED: "1"
+      PHASE6_AI_QUEUE_CAPACITY: "32"
+      PHASE6_AI_CONCURRENCY: "2"
+      PHASE6_AI_RETRY_INTERVAL_SECONDS: "300"
+      PHASE7_ENABLED: "${PHASE7_ENABLED:-1}"
+      POSTGRES_DSN: postgresql://quant@postgres:5432/quant
+      TZ: UTC
+    mem_limit: 384m
+    restart: "no"
+
+volumes:
+  phase7_acceptance_pgdata:

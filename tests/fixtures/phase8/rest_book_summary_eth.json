@@ -1,0 +1,37 @@
+{
+  "jsonrpc": "2.0",
+  "id": 8105,
+  "result": [
+    {
+      "instrument_name": "ETH-30OCT26-4000-C",
+      "base_currency": "ETH",
+      "quote_currency": "ETH",
+      "underlying_price": 4012.5,
+      "underlying_index": "index_price",
+      "volume": 4.1234567890123456789,
+      "open_interest": 45.67890123456789,
+      "mark_price": 0.012345678901234567,
+      "mark_iv": 63.4567,
+      "bid_price": 0.0121,
+      "ask_price": 0.0125,
+      "mid_price": 0.0123,
+      "last": 0.0122,
+      "creation_timestamp": 1780000000000
+    },
+    {
+      "instrument_name": "ETH-30OCT26-4000-P",
+      "base_currency": "ETH",
+      "quote_currency": "ETH",
+      "underlying_price": 4012.5,
+      "underlying_index": "index_price",
+      "volume": 5.9876543210987654321,
+      "open_interest": 54.3210987654321,
+      "mark_price": 0.013456789012345678,
+      "mark_iv": 64.5678,
+      "bid_price": 0.0131,
+      "ask_price": 0.0137,
+      "last": 0.0134,
+      "creation_timestamp": 1780000000000
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "jsonrpc": "2.0",
+  "id": 8102,
+  "result": [
+    {
+      "instrument_name": "BTC-30OCT26-100000-C",
+      "instrument_id": 8100201,
+      "base_currency": "BTC",
+      "quote_currency": "BTC",
+      "settlement_currency": "BTC",
+      "price_index": "btc_usd",
+      "kind": "option",
+      "option_type": "call",
+      "strike": 100000,
+      "expiration_timestamp": 1793356800000,
+      "creation_timestamp": 1780000000000,
+      "is_active": true,
+      "state": "open"
+    },
+    {
+      "instrument_name": "BTC-30OCT26-100000-P",
+      "instrument_id": 8100202,
+      "base_currency": "BTC",
+      "quote_currency": "BTC",
+      "settlement_currency": "BTC",
+      "price_index": "btc_usd",
+      "kind": "option",
+      "option_type": "put",
+      "strike": 100000,
+      "expiration_timestamp": 1793356800000,
+      "creation_timestamp": 1780000000000,
+      "is_active": true,
+      "state": "open"
+    }
+  ]
+}

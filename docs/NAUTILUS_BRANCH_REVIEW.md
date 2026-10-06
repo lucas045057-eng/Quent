@@ -1,0 +1,29 @@
+# Whole branch review and one concentrated fix pass
+
+Review range: `2f9cbab..4dba8f9`, 23 implementation commits, against the approved Phase9 spec/plan and the Nautilus integration spec/plan. A fresh-context GPT-6 Astra reviewer was dispatched once. It identified snapshot/feature and lifecycle/runtime concerns, then its task failed at the account usage limit before returning a graded report. Its review is **incomplete**. The author completed the local branch review and reproductions; this is weaker than a completed independent review. There is no second reviewer or review loop.
+
+## Important findings addressed
+
+1. Durable JSON restored feature window timestamps as strings. Closed bars, flow, CVD and liquidation observations disappeared; the real price observation value and ticker alias also mapped incorrectly. Seven failing producer/round-trip tests preceded the fix. The shared projector now accepts strict UTC serialized timestamps and the real producer fields, while unknown directional coverage stays unresolved.
+2. Replayed early cumulative fills were rejected after a later fill. A failing real PostgreSQL idempotence test preceded the fix. The mutable submission row now serializes result checks; exact previously stored events return without moving the current state backward.
+3. Position equity represented cash alone, and margin was manually inferred from the risk leverage ceiling. A failing actual Sandbox mark-change test preceded the fix. Equity now includes native unrealized PnL; locked margin and free balance come from Nautilus.
+4. Phase9 hard errors remained RUNNING; the configured runtime timeout did not reach the evaluator; slow PostgreSQL statements could outlive that deadline; required freshness was checked before waits. Actual database failures and an eight-second statement reproduced these defects. The runtime writes terminal failures/degradation, propagates its timeout, cancels a slow statement and rechecks required freshness before final records.
+5. Append-only expiry, durable bounded revalidation and runtime conflict-review plumbing were absent. Failing database/fixture tests preceded the fix. Migration 018 and the small runtime boundary modules add expiry, coalesced notifications, database-serialized budgets, fixed-snapshot restart, semantic deduplication, atomic supersession and the existing Phase6 gateway path. Fake/Recorded fixtures keep conflict unresolved; production remains NOT_CONFIGURED. Price/flow directional disagreement uses the existing frozen directional conflict class.
+6. Recovery only checked funding payments present in memory, allowing an extra durable payment absent from native replay to go unnoticed. A real process run followed by a database audit mismatch reproduced this. Recovery now checks the complete bounded payment identity set. Missing authority also leaves a funding payment unresolved, proven by a failing pure accounting test.
+7. Verification found that the required A1 command's `--json-output` option was absent from the compatibility gate. Two failing CLI tests preceded the fix. The gate now writes its actual canonical result atomically, clears stale output for invalid evidence and rejects paths outside Phase9 artifacts or through symlinks. The formal command and its strict parser are unchanged. Because the protected module and tests changed, all four anchored compatibility suites are regenerated.
+
+The fix pass uses RED → GREEN and affected regression. A full regression and the strict formal acceptance are recorded in the final implementation report, after the fix commit. A transient disposable database restart caused a failed development run; it is retained as a failed environment observation and is superseded only by fresh successful runs.
+
+## Rulings and items outside this review's proof
+
+- The interrupted independent review is reported honestly. Local verification continues under the user's explicit autonomous, one-review/one-fix instruction; it is not represented as a completed independent approval. Cost if wrong: author blind spots can remain.
+- Migration 018 implements scheduler behavior already required by the approved Phase9 spec, without changing frozen domain fields. Cost if wrong: runtime installation needs the additional additive migration.
+- Synthetic presence policies demonstrate integration routing only. The production DRAFT policy stays disabled; no market edge or human production approval is claimed. Cost if wrong: production policy and real historical data still require separate validation.
+- Numeric predicates unsupported by the frozen evidence representation remain fail-closed, with an explicit unknown result. Shared research evaluates its declared quantitative hypotheses separately. Cost if wrong: a production policy needing new numeric evidence cannot activate until a reviewed schema/predicate boundary is supplied.
+- Material notifications have a bounded explicit runtime entry point; scheduled passes observe persisted input changes. Core source writers are not silently modified to emit new callbacks. Cost if wrong: a source integration requiring immediate notifications must call that entry point.
+- Local Sandbox recovery is native input replay into a new simulator with audit reconciliation. Live venue reconciliation, exchange credentials and external order routes remain unverified and disabled. Cost if wrong: local recovery evidence must not be reused for live approval.
+- Resource measurements cover the standalone local adapter/Paper pilot. Combined production Engine load and Collector stress are unverified; existing budgets are unchanged. Cost if wrong: a combined deployment needs another measured resource assessment.
+
+## Deferred minors
+
+- Existing Pydantic `schema` shadowing and pandas/aiohttp deprecation warnings remain. They do not weaken assertions or skips and can be addressed in a later maintenance change.

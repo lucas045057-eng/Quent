@@ -1,0 +1,2428 @@
+{
+  "collector": {
+    "entrypoint": "quant_phase1.entrypoints.collector.run_service",
+    "paper_only": true,
+    "universe_limit": 200
+  },
+  "dataset_sha256": "55bdcc43adf8a3e32bd457a2be84ccd0b306c337c03247e6c53f1a57246c56a9",
+  "dataset_version": "phase6-integrated-replay-v2-1",
+  "engine": {
+    "engine_process_restarts_per_resource_arm": 3,
+    "engine_scheduler_interval_seconds": 300,
+    "entrypoint": "quant_phase1.entrypoints.engine.run_service",
+    "minimum_lifecycle_evidence": [
+      "bootstrap",
+      "one Phase2 cycle",
+      "Phase5 context",
+      "Phase6 ACTIVE health"
+    ],
+    "phase2_cycles_per_engine_process": 1,
+    "phase2_cycles_per_resource_arm": 3
+  },
+  "event_totals_by_phase": {
+    "phase1": 84660,
+    "phase2": 603
+  },
+  "expected_logical_rows": {
+    "per_three_cycle_resource_arm": {
+      "basis_snapshots": 0,
+      "cross_exchange_derivative_snapshots": 200,
+      "cross_exchange_flow_snapshots": 8,
+      "exchange_instruments": 600,
+      "funding_rates": 800,
+      "klines": 79136,
+      "liquidation_events": 0,
+      "long_short_observations": 0,
+      "market_observations": 2475,
+      "market_snapshots": 825,
+      "open_interest": 600,
+      "phase5_market_leader_context": 8,
+      "phase5_market_regime_snapshots": 4,
+      "phase5_relative_strength_snapshots": 1800,
+      "phase5_sector_context_snapshots": 6,
+      "phase5_sector_membership": 200,
+      "phase6_ai_analyses": 0,
+      "phase6_ai_extractions": 0,
+      "phase6_ai_usage": 0,
+      "phase6_macro_events": 0,
+      "phase6_news_events": 0,
+      "phase6_source_registry": 0,
+      "phase6_unlock_events": 0,
+      "phase7_onchain_flow_windows": 0,
+      "phase7_onchain_transfer_events": 0,
+      "runtime_health_events": 3,
+      "screening_results": 600,
+      "screening_runs": 3,
+      "stage1_derivative_enrichment": 600,
+      "stage1_flow_enrichment": 600,
+      "stage1_phase4_enrichment": 600,
+      "stage1_phase5_context_enrichment": 600,
+      "symbols": 805,
+      "trade_flow_windows": 50,
+      "universe_members": 200,
+      "universe_runs": 1
+    },
+    "phase2_cross_exchange_derivative_snapshots": 200,
+    "phase2_funding": 800,
+    "phase2_instruments": 600,
+    "phase2_open_interest": 600,
+    "phase6_ai_provider_executions": 0,
+    "phase6_news_macro_unlock_observations": 0
+  },
+  "fault_sequence": {
+    "phase1_kline_drops": 20,
+    "phase1_reset_order": [
+      "bitget-uta-v3-public",
+      "bybit-v5-public",
+      "hyperliquid-public",
+      "bitget-uta-v3-public",
+      "bybit-v5-public",
+      "hyperliquid-public",
+      "bitget-uta-v3-public",
+      "bybit-v5-public",
+      "hyperliquid-public",
+      "bitget-uta-v3-public",
+      "bybit-v5-public",
+      "hyperliquid-public",
+      "bitget-uta-v3-public",
+      "bybit-v5-public",
+      "hyperliquid-public"
+    ],
+    "phase1_ws_resets": 15,
+    "phase2_faults": 0
+  },
+  "phase1_cassette": {
+    "event_counts_by_symbol": {
+      "*": 15,
+      "0GUSDT": 399,
+      "1000000MOGUSDT": 2,
+      "10000NEXUSDT": 2,
+      "1000BONKUSDT": 399,
+      "1000CATUSDT": 2,
+      "1000RATSUSDT": 2,
+      "1000SATSUSDT": 2,
+      "1000XECUSDT": 2,
+      "1INCHUSDT": 2,
+      "1MBABYDOGEUSDT": 2,
+      "1MCHEEMSUSDT": 2,
+      "2ZUSDT": 2,
+      "AALUSDT": 2,
+      "AAOIUSDT": 2,
+      "AAPLUSDT": 2,
+      "AAPUUSDT": 2,
+      "AAVEUSDT": 399,
+      "ABNBUSDT": 2,
+      "ACEUSDT": 399,
+      "ACHRUSDT": 2,
+      "ACHUSDT": 2,
+      "ACTUSDT": 2,
+      "ACUUSDT": 2,
+      "ADAUSDT": 582,
+      "ADBEUSDT": 2,
+      "ADIUSDT": 2,
+      "ADVANTESTUSDT": 2,
+      "AEHRUSDT": 2,
+      "AEONUSDT": 399,
+      "AEROUSDT": 399,
+      "AEVOUSDT": 2,
+      "AGLDUSDT": 2,
+      "AGPUUSDT": 2,
+      "AIOUSDT": 2,
+      "AIXBTUSDT": 2,
+      "AKEUSDT": 399,
+      "AKTUSDT": 2,
+      "ALABUSDT": 2,
+      "ALCHUSDT": 2,
+      "ALGOUSDT": 399,
+      "ALICEUSDT": 2,
+      "ALLOUSDT": 399,
+      "ALTUSDT": 2,
+      "AMATUSDT": 2,
+      "AMCUSDT": 2,
+      "AMDUSDT": 2,
+      "AMGNUSDT": 2,
+      "AMKRUSDT": 2,
+      "AMZNUSDT": 2,
+      "AMZUUSDT": 2,
+      "ANETUSDT": 2,
+      "ANIMEUSDT": 2,
+      "ANKRUSDT": 2,
+      "ANTHROPICUSDT": 2,
+      "APDUSDT": 2,
+      "APEUSDT": 399,
+      "API3USDT": 2,
+      "APLDUSDT": 2,
+      "APPUSDT": 2,
+      "APRUSDT": 399,
+      "APTUSDT": 399,
+      "ARBUSDT": 399,
+      "ARCUSDT": 2,
+      "ARIAUSDT": 2,
+      "ARKMUSDT": 399,
+      "ARKUSDT": 2,
+      "ARMUSDT": 2,
+      "ARPAUSDT": 399,
+      "ARQQUSDT": 2,
+      "ARUSDT": 399,
+      "ARXUSDT": 399,
+      "ASMLUSDT": 2,
+      "ASRUSDT": 2,
+      "ASTERUSDT": 399,
+      "ASTRUSDT": 2,
+      "ASTSUSDT": 2,
+      "ASXUSDT": 2,
+      "ATHUSDT": 399,
+      "ATOMUSDT": 398,
+      "ATUSDT": 2,
+      "AUCTIONUSDT": 2,
+      "AUSDT": 2,
+      "AVAUSDT": 398,
+      "AVAVUSDT": 2,
+      "AVAXUSDT": 398,
+      "AVGOUSDT": 2,
+      "AVNTUSDT": 2,
+      "AWEUSDT": 2,
+      "AXLUSDT": 2,
+      "AXONUSDT": 2,
+      "AXSUSDT": 398,
+      "AXTIUSDT": 2,
+      "AZTECUSDT": 2,
+      "B200USDT": 2,
+      "B2USDT": 398,
+      "BABAUSDT": 2,
+      "BABYUSDT": 2,
+      "BACUSDT": 2,
+      "BANANAS31USDT": 2,
+      "BANANAUSDT": 2,
+      "BANDUSDT": 2,
+      "BANKUSDT": 398,
+      "BANUSDT": 2,
+      "BARDUSDT": 2,
+      "BASEDUSDT": 2,
+      "BATUSDT": 2,
+      "BAUSDT": 2,
+      "BBSTOCKUSDT": 2,
+      "BBUSDT": 398,
+      "BCHUSDT": 587,
+      "BEAMUSDT": 2,
+      "BEATUSDT": 398,
+      "BERAUSDT": 398,
+      "BEUSDT": 2,
+      "BGBUSDT": 398,
+      "BHPUSDT": 2,
+      "BICOUSDT": 398,
+      "BIGTIMEUSDT": 2,
+      "BILLUSDT": 398,
+      "BIOUSDT": 2,
+      "BIRBUSDT": 2,
+      "BITOUSDT": 2,
+      "BKNGUSDT": 2,
+      "BLESSUSDT": 398,
+      "BLSHUSDT": 2,
+      "BLURUSDT": 2,
+      "BMNRUSDT": 2,
+      "BNBUSDT": 398,
+      "BNCUSDT": 2,
+      "BNTUSDT": 2,
+      "BOMEUSDT": 398,
+      "BOTUSDT": 2,
+      "BOTZUSDT": 2,
+      "BRETTUSDT": 2,
+      "BREVUSDT": 2,
+      "BRKBUSDT": 2,
+      "BROCCOLIUSDT": 398,
+      "BRUSDT": 398,
+      "BSBUSDT": 398,
+      "BSPUSDT": 2,
+      "BSVUSDT": 398,
+      "BTC": 23,
+      "BTCUSDT": 638,
+      "BTWUSDT": 398,
+      "BUDUSDT": 2,
+      "BUSDT": 2,
+      "BXUSDT": 2,
+      "BYDUSDT": 2,
+      "BZUSDT": 2,
+      "C98USDT": 2,
+      "CAKEUSDT": 398,
+      "CAPUSDT": 398,
+      "CARVUSDT": 2,
+      "CATIUSDT": 2,
+      "CATUSDT": 2,
+      "CBRSUSDT": 2,
+      "CCLUSDT": 2,
+      "CCUSDT": 2,
+      "CELOUSDT": 2,
+      "CELRUSDT": 398,
+      "CETUSUSDT": 2,
+      "CFGUSDT": 398,
+      "CFXUSDT": 398,
+      "CGNXUSDT": 2,
+      "CGPTUSDT": 2,
+      "CHILLGUYUSDT": 2,
+      "CHIPUSDT": 398,
+      "CHRUSDT": 398,
+      "CHZUSDT": 2,
+      "CIENUSDT": 2,
+      "CKBUSDT": 2,
+      "CLANKERUSDT": 2,
+      "CLSKUSDT": 2,
+      "CLUSDT": 2,
+      "CMCSAUSDT": 2,
+      "COAIUSDT": 398,
+      "COHRUSDT": 2,
+      "COINUSDT": 2,
+      "COMPUSDT": 398,
+      "CONLUSDT": 2,
+      "COOKIEUSDT": 2,
+      "COPPERUSDT": 2,
+      "COPUSDT": 2,
+      "CORZUSDT": 2,
+      "COSTUSDT": 2,
+      "COTIUSDT": 398,
+      "COWUSDT": 2,
+      "CPNGUSDT": 2,
+      "CPUSDT": 398,
+      "CRCLUSDT": 2,
+      "CRDOUSDT": 2,
+      "CRMUSDT": 2,
+      "CROSSUSDT": 2,
+      "CROUSDT": 398,
+      "CRVUSDT": 398,
+      "CRWDUSDT": 2,
+      "CRWVUSDT": 2,
+      "CSCOUSDT": 2,
+      "CSOPSK2LHKDUSDT": 2,
+      "CSOPSS2LHKDUSDT": 2,
+      "CTKUSDT": 2,
+      "CTRUSDT": 2,
+      "CTSIUSDT": 2,
+      "CUSDT": 2,
+      "CVCUSDT": 398,
+      "CVXSTOCKUSDT": 2,
+      "CVXUSDT": 2,
+      "CXMTUSDT": 2,
+      "CYBERUSDT": 2,
+      "CYPHUSDT": 2,
+      "CYSUSDT": 398,
+      "DASHUSDT": 398,
+      "DATAUSDT": 398,
+      "DDOGUSDT": 2,
+      "DEEPUSDT": 2,
+      "DELLUSDT": 2,
+      "DEUSDT": 2,
+      "DEXEUSDT": 2,
+      "DFENUSDT": 2,
+      "DGAIUSDT": 2,
+      "DIASTOCKUSDT": 2,
+      "DIAUSDT": 2,
+      "DISKUSDT": 2,
+      "DJTUSDT": 2,
+      "DKNGUSDT": 2,
+      "DOGEUSDT": 568,
+      "DOGSUSDT": 2,
+      "DOLOUSDT": 2,
+      "DOODUSDT": 2,
+      "DOOSBOTUSDT": 2,
+      "DOOSENERUSDT": 2,
+      "DOSUSDT": 398,
+      "DOTUSDT": 398,
+      "DRAMUSDT": 2,
+      "DRIFTUSDT": 2,
+      "DXYZUSDT": 2,
+      "DYDXUSDT": 2,
+      "DYMUSDT": 2,
+      "ECHOUSDT": 2,
+      "EDGEUSDT": 398,
+      "EGLDUSDT": 398,
+      "EIGENUSDT": 398,
+      "ELSAUSDT": 2,
+      "ENAUSDT": 592,
+      "ENJUSDT": 2,
+      "ENSOUSDT": 2,
+      "ENSUSDT": 398,
+      "EPICUSDT": 2,
+      "ERAUSDT": 2,
+      "ESPUSDT": 2,
+      "ETCUSDT": 398,
+      "ETH": 11,
+      "ETHFIUSDT": 398,
+      "ETHUSDT": 614,
+      "ETHWUSDT": 2,
+      "ETNUSDT": 2,
+      "EULUSDT": 2,
+      "EURUSDUSDT": 2,
+      "EUVUSDT": 2,
+      "EVAAUSDT": 398,
+      "EVEXUSDT": 2,
+      "EWHUSDT": 2,
+      "EWJUSDT": 2,
+      "EWTUSDT": 2,
+      "EWYUSDT": 2,
+      "EWZUSDT": 2,
+      "FARTCOINUSDT": 398,
+      "FCXUSDT": 2,
+      "FETUSDT": 398,
+      "FFUSDT": 398,
+      "FIDAUSDT": 2,
+      "FIGHTUSDT": 398,
+      "FILUSDT": 398,
+      "FLEXUSDT": 2,
+      "FLNCUSDT": 2,
+      "FLOCKUSDT": 398,
+      "FLOKIUSDT": 398,
+      "FLUIDUSDT": 2,
+      "FLUXUSDT": 2,
+      "FLYUSDT": 2,
+      "FOGOUSDT": 2,
+      "FOLKSUSDT": 398,
+      "FORMUSDT": 398,
+      "FOXAUSDT": 2,
+      "FRAXUSDT": 2,
+      "FUSDT": 2,
+      "FUTUUSDT": 2,
+      "FWDIUSDT": 2,
+      "GALAUSDT": 398,
+      "GASUSDT": 2,
+      "GBPUSDUSDT": 2,
+      "GDXUSDT": 2,
+      "GENIUSUSDT": 398,
+      "GEUSDT": 2,
+      "GEVUSDT": 2,
+      "GFSUSDT": 2,
+      "GGLLUSDT": 2,
+      "GIGADEVICEUSDT": 2,
+      "GIGGLEUSDT": 398,
+      "GILDUSDT": 2,
+      "GLMUSDT": 2,
+      "GLWUSDT": 2,
+      "GMEUSDT": 2,
+      "GMTUSDT": 2,
+      "GMXUSDT": 2,
+      "GNRCUSDT": 2,
+      "GOOGLUSDT": 2,
+      "GPROUSDT": 2,
+      "GPSUSDT": 2,
+      "GRAMUSDT": 398,
+      "GRASSUSDT": 398,
+      "GRIFFAINUSDT": 2,
+      "GRTUSDT": 398,
+      "GRVTUSDT": 398,
+      "GSUSDT": 2,
+      "GTLBUSDT": 2,
+      "GUNUSDT": 2,
+      "GUSDT": 398,
+      "GWEIUSDT": 2,
+      "H100USDT": 2,
+      "HAEDALUSDT": 2,
+      "HANMIUSDT": 2,
+      "HBARUSDT": 398,
+      "HIVEUSDT": 2,
+      "HOLOUSDT": 398,
+      "HOMEUSDT": 2,
+      "HOODUSDT": 2,
+      "HOTUSDT": 2,
+      "HPEUSDT": 2,
+      "HPQUSDT": 2,
+      "HSIUSDT": 2,
+      "HUMAUSDT": 2,
+      "HUSDT": 398,
+      "HUTUSDT": 2,
+      "HYPERUSDT": 2,
+      "HYPEUSDT": 579,
+      "HYUNDAIUSDT": 2,
+      "IBBUSDT": 2,
+      "IBITUSDT": 2,
+      "IBMUSDT": 2,
+      "ICNTUSDT": 2,
+      "ICPUSDT": 398,
+      "IDOLUSDT": 2,
+      "IDUSDT": 2,
+      "ILVUSDT": 2,
+      "IMXUSDT": 2,
+      "INDAUSDT": 2,
+      "INFQUSDT": 2,
+      "INITUSDT": 2,
+      "INJUSDT": 398,
+      "INTCUSDT": 2,
+      "INTWUSDT": 2,
+      "INUSDT": 2,
+      "INXUSDT": 2,
+      "IONQUSDT": 2,
+      "IOSTUSDT": 398,
+      "IOTAUSDT": 2,
+      "IOTXUSDT": 398,
+      "IOUSDT": 398,
+      "IRENUSDT": 2,
+      "IRYSUSDT": 2,
+      "ISRGUSDT": 2,
+      "IWMUSDT": 2,
+      "JASMYUSDT": 398,
+      "JCTUSDT": 2,
+      "JDUSDT": 2,
+      "JEPQUSDT": 2,
+      "JMKEUSDT": 2,
+      "JOBYUSDT": 2,
+      "JOEUSDT": 2,
+      "JP225USDT": 2,
+      "JPMUSDT": 2,
+      "JSTUSDT": 2,
+      "JTOUSDT": 398,
+      "JUPUSDT": 398,
+      "KAIAUSDT": 2,
+      "KAITOUSDT": 398,
+      "KASUSDT": 398,
+      "KATUSDT": 2,
+      "KAVAUSDT": 2,
+      "KERNELUSDT": 398,
+      "KGENUSDT": 2,
+      "KIOXIAUSDT": 2,
+      "KITEUSDT": 398,
+      "KLACUSDT": 2,
+      "KMNOUSDT": 398,
+      "KNCUSDT": 2,
+      "KOPNUSDT": 2,
+      "KORUUSDT": 2,
+      "KOUSDT": 2,
+      "KR200USDT": 2,
+      "KSMUSDT": 2,
+      "KSTRUSDT": 2,
+      "KTOSUSDT": 2,
+      "KUAISHOUUSDT": 2,
+      "KWEBUSDT": 2,
+      "LABUSDT": 398,
+      "LASERTECUSDT": 2,
+      "LAUSDT": 398,
+      "LAYERUSDT": 2,
+      "LDOUSDT": 398,
+      "LENOVOHKDUSDT": 2,
+      "LGELECTRONICSUSDT": 2,
+      "LINEAUSDT": 2,
+      "LINKUSDT": 398,
+      "LINUSDT": 2,
+      "LISTAUSDT": 2,
+      "LITEUSDT": 2,
+      "LITUSDT": 398,
+      "LLYUSDT": 2,
+      "LMTUSDT": 2,
+      "LPTUSDT": 2,
+      "LQTYUSDT": 2,
+      "LRCXUSDT": 2,
+      "LSKUSDT": 585,
+      "LTCUSDT": 582,
+      "LUMIAUSDT": 2,
+      "LUNAUSDT": 2,
+      "LUNCUSDT": 2,
+      "LWLGUSDT": 2,
+      "LYNUSDT": 2,
+      "LYTEUSDT": 2,
+      "MAGICUSDT": 2,
+      "MAGMAUSDT": 398,
+      "MANAUSDT": 2,
+      "MANTAUSDT": 2,
+      "MANTRAUSDT": 2,
+      "MARAUSDT": 2,
+      "MARSCOINUSDT": 398,
+      "MARUSDT": 2,
+      "MASKUSDT": 2,
+      "MAVUSDT": 2,
+      "MCDUSDT": 2,
+      "MDBUSDT": 2,
+      "MEGAUSDT": 2,
+      "MEITUANUSDT": 2,
+      "MELANIAUSDT": 398,
+      "MELIUSDT": 2,
+      "MEMEUSDT": 2,
+      "MERLUSDT": 2,
+      "METAUSDT": 2,
+      "METISUSDT": 2,
+      "METUSDT": 398,
+      "METUUSDT": 2,
+      "MEUSDT": 2,
+      "MEWUSDT": 2,
+      "MINAUSDT": 398,
+      "MINIMAXHKDUSDT": 2,
+      "MINIMAXUSDT": 2,
+      "MIRAUSDT": 2,
+      "MMTUSDT": 2,
+      "MOCAUSDT": 2,
+      "MONUSDT": 398,
+      "MOODENGUSDT": 398,
+      "MOONSHOTUSDT": 2,
+      "MORPHOUSDT": 398,
+      "MOVEUSDT": 2,
+      "MOVRUSDT": 2,
+      "MPUSDT": 2,
+      "MRKUSDT": 2,
+      "MRNAUSDT": 2,
+      "MRVLUSDT": 2,
+      "MSFTUSDT": 2,
+      "MSFUUSDT": 2,
+      "MSTRUSDT": 2,
+      "MSTUUSDT": 2,
+      "MTLUSDT": 2,
+      "MUBARAKUSDT": 398,
+      "MUFGUSDT": 2,
+      "MUSDT": 2,
+      "MUUSDT": 2,
+      "MUUUSDT": 2,
+      "MVLLUSDT": 2,
+      "MYXUSDT": 2,
+      "NAORISUSDT": 2,
+      "NATGASUSDT": 2,
+      "NAVERUSDT": 2,
+      "NBISUSDT": 2,
+      "NDX100USDT": 2,
+      "NEARUSDT": 604,
+      "NEIROCTOUSDT": 2,
+      "NEOUSDT": 2,
+      "NETEASEUSDT": 2,
+      "NETUSDT": 2,
+      "NEWTUSDT": 2,
+      "NFLXUSDT": 2,
+      "NIGHTUSDT": 2,
+      "NILUSDT": 618,
+      "NIOUSDT": 2,
+      "NKEUSDT": 2,
+      "NMRUSDT": 2,
+      "NOCUSDT": 2,
+      "NOKSTOCKUSDT": 2,
+      "NOTUSDT": 2,
+      "NOWUSDT": 2,
+      "NTAPUSDT": 2,
+      "NVDAUSDT": 2,
+      "NVDLUSDT": 2,
+      "NVSUSDT": 2,
+      "NXPCUSDT": 2,
+      "OGNUSDT": 2,
+      "OGUSDT": 2,
+      "OKLOUSDT": 2,
+      "OKTAUSDT": 2,
+      "ONDOUSDT": 577,
+      "ONDSUSDT": 2,
+      "ONEUSDT": 398,
+      "ONGUSDT": 2,
+      "ONTUSDT": 2,
+      "OPENAIUSDT": 2,
+      "OPENUSDT": 2,
+      "OPGUSDT": 2,
+      "OPNUSDT": 2,
+      "OPUSDT": 398,
+      "ORCAUSDT": 398,
+      "ORCLUSDT": 2,
+      "ORDERUSDT": 2,
+      "ORDIUSDT": 398,
+      "OSSUSDT": 2,
+      "OURAUSDT": 2,
+      "OUSDT": 2,
+      "OUSTUSDT": 2,
+      "OXYUSDT": 2,
+      "PANWUSDT": 2,
+      "PARTIUSDT": 398,
+      "PATHUSDT": 2,
+      "PAXGUSDT": 2,
+      "PDDUSDT": 2,
+      "PENDLEUSDT": 398,
+      "PENGUSDT": 2,
+      "PENGUUSDT": 398,
+      "PEOPLEUSDT": 398,
+      "PEPEUSDT": 568,
+      "PEPUSDT": 2,
+      "PHAUSDT": 398,
+      "PIEVERSEUSDT": 2,
+      "PIPPINUSDT": 2,
+      "PIUSDT": 398,
+      "PIXELUSDT": 2,
+      "PLTRUSDT": 2,
+      "PLUMEUSDT": 398,
+      "PLUSDT": 2,
+      "PNUTUSDT": 398,
+      "POETUSDT": 2,
+      "POLUSDT": 398,
+      "POLYMARKETUSDT": 2,
+      "POLYXUSDT": 2,
+      "PONSUSDT": 398,
+      "POPCATUSDT": 2,
+      "POPMARTUSDT": 2,
+      "POWERUSDT": 398,
+      "POWRUSDT": 2,
+      "PRLUSDT": 2,
+      "PROMUSDT": 398,
+      "PROSUSDT": 2,
+      "PROVEUSDT": 2,
+      "PUMPUSDT": 398,
+      "PUNDIXUSDT": 2,
+      "PURRUSDT": 2,
+      "PYPLUSDT": 2,
+      "PYTHUSDT": 398,
+      "QBTSUSDT": 2,
+      "QCOMUSDT": 2,
+      "QLDUSDT": 2,
+      "QNTSTOCKUSDT": 2,
+      "QNTUSDT": 2,
+      "QQQUSDT": 2,
+      "QTUMUSDT": 2,
+      "QUBTUSDT": 2,
+      "QUSDT": 2,
+      "RAMUSDT": 2,
+      "RAREUSDT": 2,
+      "RAVEUSDT": 398,
+      "RAYUSDT": 398,
+      "RDDTUSDT": 2,
+      "RDWUSDT": 2,
+      "RECALLUSDT": 2,
+      "REDUSDT": 2,
+      "RENDERUSDT": 398,
+      "RESOLVUSDT": 2,
+      "REUSDT": 398,
+      "REZUSDT": 398,
+      "RGTIUSDT": 2,
+      "RIOUSDT": 2,
+      "RIVERUSDT": 398,
+      "RKLBUSDT": 2,
+      "ROBOUSDT": 2,
+      "ROKUSDT": 2,
+      "ROSEUSDT": 2,
+      "RPLUSDT": 2,
+      "RSRUSDT": 2,
+      "RTXSTOCKUSDT": 2,
+      "RUNEUSDT": 2,
+      "RVNUSDT": 2,
+      "SAFEUSDT": 2,
+      "SAHARAUSDT": 2,
+      "SAMSUNGEMUSDT": 2,
+      "SAMSUNGUSDT": 2,
+      "SANDUSDT": 2,
+      "SANTOSUSDT": 2,
+      "SAPIENUSDT": 2,
+      "SATLUSDT": 2,
+      "SDGRUSDT": 2,
+      "SECZUSDT": 2,
+      "SEIUSDT": 398,
+      "SENTUSDT": 398,
+      "SFPUSDT": 2,
+      "SGOVUSDT": 2,
+      "SHAZUSDT": 2,
+      "SHEINHKDUSDT": 2,
+      "SHEINUSDT": 2,
+      "SHELLUSDT": 2,
+      "SHIBUSDT": 398,
+      "SHOPUSDT": 2,
+      "SIGNUSDT": 2,
+      "SIMOUSDT": 2,
+      "SIRENUSDT": 398,
+      "SITMUSDT": 2,
+      "SKDDUSDT": 2,
+      "SKHYNIXUSDT": 2,
+      "SKHYUSDT": 2,
+      "SKLUSDT": 2,
+      "SKRUSDT": 2,
+      "SKUUUSDT": 2,
+      "SKYAIUSDT": 398,
+      "SKYUSDT": 398,
+      "SLPUSDT": 2,
+      "SLXUSDT": 398,
+      "SMCIUSDT": 2,
+      "SMHUSDT": 2,
+      "SMICUSDT": 2,
+      "SMRUSDT": 2,
+      "SNDKUSDT": 2,
+      "SNOWUSDT": 2,
+      "SNXUSDT": 398,
+      "SNXXUSDT": 2,
+      "SOFIUSDT": 2,
+      "SOFTBANKUSDT": 2,
+      "SOL": 7,
+      "SOLUSDT": 589,
+      "SOMIUSDT": 2,
+      "SONICUSDT": 2,
+      "SONYUSDT": 2,
+      "SOONUSDT": 2,
+      "SOPHUSDT": 2,
+      "SOXLUSDT": 2,
+      "SOXSUSDT": 2,
+      "SOXXUSDT": 2,
+      "SP500USDT": 2,
+      "SPACEUSDT": 2,
+      "SPCHUSDT": 2,
+      "SPCXUSDT": 2,
+      "SPELLUSDT": 2,
+      "SPIRUSDT": 2,
+      "SPKUSDT": 2,
+      "SPXUSDT": 398,
+      "SPYUSDT": 2,
+      "SQDUSDT": 2,
+      "SQQQUSDT": 2,
+      "SSPCUSDT": 2,
+      "SSVUSDT": 2,
+      "STABLEUSDT": 2,
+      "STEEMUSDT": 398,
+      "STGUSDT": 398,
+      "STONKUSDT": 334,
+      "STOUSDT": 2,
+      "STRCUSDT": 2,
+      "STRKUSDT": 398,
+      "STXSTOCKUSDT": 2,
+      "STXUSDT": 398,
+      "SUIUSDT": 578,
+      "SUMIELECUSDT": 2,
+      "SUNUSDT": 2,
+      "SUPERUSDT": 398,
+      "SUSDT": 398,
+      "SUSHIUSDT": 2,
+      "SXTUSDT": 2,
+      "SYNUSDT": 398,
+      "SYRUPUSDT": 2,
+      "TAGUSDT": 2,
+      "TAIKOUSDT": 2,
+      "TAOUSDT": 398,
+      "TBTUSDT": 2,
+      "TEAMUSDT": 2,
+      "TEMUSDT": 2,
+      "TENCENTHKDUSDT": 2,
+      "TENCENTUSDT": 2,
+      "TERUSDT": 2,
+      "THETAUSDT": 2,
+      "THEUSDT": 2,
+      "TIAUSDT": 398,
+      "TLMUSDT": 2,
+      "TLTUSDT": 2,
+      "TMFUSDT": 2,
+      "TMUSDT": 2,
+      "TNSRUSDT": 2,
+      "TOKYOELUSDT": 2,
+      "TOSHIUSDT": 2,
+      "TOWNSUSDT": 2,
+      "TQQQUSDT": 2,
+      "TRBUSDT": 398,
+      "TREEUSDT": 2,
+      "TRIAUSDT": 398,
+      "TRUMPUSDT": 596,
+      "TRUSTUSDT": 2,
+      "TRXUSDT": 398,
+      "TSEMUSDT": 2,
+      "TSLAUSDT": 2,
+      "TSLLUSDT": 2,
+      "TSMUSDT": 2,
+      "TTWOUSDT": 2,
+      "TURBOUSDT": 2,
+      "TUSDT": 2,
+      "TUTUSDT": 398,
+      "TWLOUSDT": 2,
+      "TXNUSDT": 2,
+      "TZAUSDT": 2,
+      "UAIUSDT": 398,
+      "UBERUSDT": 2,
+      "UBUSDT": 398,
+      "UMAUSDT": 2,
+      "UNHUSDT": 2,
+      "UNITASUSDT": 2,
+      "UNITREEUSDT": 2,
+      "UNIUSDT": 583,
+      "URNMUSDT": 2,
+      "USARUSDT": 2,
+      "USDBRLUSDT": 2,
+      "USDCUSDT": 2,
+      "USDJPYUSDT": 2,
+      "USELESSUSDT": 398,
+      "USTCUSDT": 2,
+      "USUALUSDT": 2,
+      "USUSDT": 398,
+      "UVXYUSDT": 2,
+      "VALEUSDT": 2,
+      "VANAUSDT": 2,
+      "VEEVUSDT": 2,
+      "VELODROMEUSDT": 2,
+      "VELVETUSDT": 398,
+      "VETUSDT": 398,
+      "VIRTUALUSDT": 398,
+      "VOOUSDT": 2,
+      "VRTUSDT": 2,
+      "VSTUSDT": 2,
+      "VTHOUSDT": 398,
+      "VUSDT": 2,
+      "VVVUSDT": 398,
+      "WALUSDT": 2,
+      "WAXPUSDT": 2,
+      "WBDUSDT": 2,
+      "WCTUSDT": 2,
+      "WDCUSDT": 2,
+      "WENUSDT": 2,
+      "WETUSDT": 2,
+      "WIFUSDT": 398,
+      "WLDUSDT": 576,
+      "WLFIUSDT": 398,
+      "WMTUSDT": 2,
+      "WOOUSDT": 2,
+      "WUSDT": 2,
+      "XAGUSDT": 2,
+      "XAIUSDT": 2,
+      "XANUSDT": 2,
+      "XAUTUSDT": 2,
+      "XAUUSDT": 2,
+      "XBIUSDT": 2,
+      "XIAOMIHKDUSDT": 2,
+      "XIAOMIUSDT": 2,
+      "XLEUSDT": 2,
+      "XLKUSDT": 2,
+      "XLMUSDT": 398,
+      "XLUUSDT": 2,
+      "XLVUSDT": 2,
+      "XMRUSDT": 398,
+      "XNDUUSDT": 2,
+      "XOMUSDT": 2,
+      "XPDUSDT": 2,
+      "XPINUSDT": 2,
+      "XPLUSDT": 398,
+      "XPTUSDT": 2,
+      "XRPUSDT": 583,
+      "XTZUSDT": 2,
+      "XVGUSDT": 2,
+      "XVSUSDT": 2,
+      "YBUSDT": 2,
+      "YGGUSDT": 2,
+      "ZAMAUSDT": 398,
+      "ZBTUSDT": 2,
+      "ZECUSDT": 600,
+      "ZENUSDT": 398,
+      "ZESTUSDT": 398,
+      "ZETAUSDT": 398,
+      "ZHIPUHKDUSDT": 2,
+      "ZHIPUUSDT": 2,
+      "ZHONGJIUSDT": 2,
+      "ZILUSDT": 2,
+      "ZKCUSDT": 2,
+      "ZKPUSDT": 2,
+      "ZKUSDT": 2,
+      "ZMUSDT": 2,
+      "ZORAUSDT": 2,
+      "ZROUSDT": 398,
+      "ZRXUSDT": 2,
+      "ZSUSDT": 2,
+      "\u54c8\u57fa\u7c73USDT": 2,
+      "\u725b\u6765USDT": 398,
+      "\u9f99\u867eUSDT": 398
+    },
+    "event_timestamp_max": "2026-09-24T11:39:14.780000Z",
+    "event_timestamp_min": "2026-09-07T20:00:00Z",
+    "event_total": 84660,
+    "event_type_counts": {
+      "fault": 35,
+      "instrument": 805,
+      "kline": 79248,
+      "public_trade": 256,
+      "ticker": 4316
+    },
+    "fault_sequence": [
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 1709,
+        "source": "bitget_v3_rest",
+        "symbol": "0GUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 2106,
+        "source": "bitget_v3_rest",
+        "symbol": "1000BONKUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 2503,
+        "source": "bitget_v3_rest",
+        "symbol": "AAVEUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 2900,
+        "source": "bitget_v3_rest",
+        "symbol": "ACEUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 3297,
+        "source": "bitget_v3_rest",
+        "symbol": "ADAUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 3694,
+        "source": "bitget_v3_rest",
+        "symbol": "AEONUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 4091,
+        "source": "bitget_v3_rest",
+        "symbol": "AEROUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 4488,
+        "source": "bitget_v3_rest",
+        "symbol": "AKEUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 4885,
+        "source": "bitget_v3_rest",
+        "symbol": "ALGOUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 5282,
+        "source": "bitget_v3_rest",
+        "symbol": "ALLOUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 5679,
+        "source": "bitget_v3_rest",
+        "symbol": "APEUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 6076,
+        "source": "bitget_v3_rest",
+        "symbol": "APRUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 6473,
+        "source": "bitget_v3_rest",
+        "symbol": "APTUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 6870,
+        "source": "bitget_v3_rest",
+        "symbol": "ARBUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 7267,
+        "source": "bitget_v3_rest",
+        "symbol": "ARKMUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 7664,
+        "source": "bitget_v3_rest",
+        "symbol": "ARPAUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 8061,
+        "source": "bitget_v3_rest",
+        "symbol": "ARUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 8458,
+        "source": "bitget_v3_rest",
+        "symbol": "ARXUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 8855,
+        "source": "bitget_v3_rest",
+        "symbol": "ASTERUSDT"
+      },
+      {
+        "fault_event": "DROP_KLINE_DURING_BOOTSTRAP",
+        "interval": "5m",
+        "receive_order": 9252,
+        "source": "bitget_v3_rest",
+        "symbol": "ATHUSDT"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 81009,
+        "source": "bitget-uta-v3-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 81252,
+        "source": "bybit-v5-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 81496,
+        "source": "hyperliquid-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 81739,
+        "source": "bitget-uta-v3-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 81983,
+        "source": "bybit-v5-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 82226,
+        "source": "hyperliquid-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 82470,
+        "source": "bitget-uta-v3-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 82713,
+        "source": "bybit-v5-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 82956,
+        "source": "hyperliquid-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 83200,
+        "source": "bitget-uta-v3-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 83443,
+        "source": "bybit-v5-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 83687,
+        "source": "hyperliquid-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 83930,
+        "source": "bitget-uta-v3-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 84174,
+        "source": "bybit-v5-public",
+        "symbol": "*"
+      },
+      {
+        "fault_event": "WS_RESET",
+        "interval": null,
+        "receive_order": 84417,
+        "source": "hyperliquid-public",
+        "symbol": "*"
+      }
+    ],
+    "path": "tests/fixtures/replays/phase6-bitget-rest-20260924.jsonl.gz",
+    "receive_order_max": 84660,
+    "receive_order_min": 1,
+    "sha256": "1249ef6b7e708726d23469129f11a5fe89fc23023fd09763c3fa15f98a0b600b",
+    "source_counts": {
+      "bitget-uta-v3-kline": 112,
+      "bitget-uta-v3-public": 5,
+      "bitget-uta-v3-publicTrade": 172,
+      "bitget-uta-v3-ticker": 3511,
+      "bitget_v3_rest": 80766,
+      "bybit-v5-public": 48,
+      "hyperliquid-public": 46
+    }
+  },
+  "phase2_fixture": {
+    "bitget_open_interest_semantics": "raw ticker value retained; unit unconfirmed; no normalized OI asserted",
+    "event_total": 603,
+    "event_type_counts": {
+      "current_funding_payload": 200,
+      "instrument_payload": 2,
+      "meta_and_asset_context_payload": 1,
+      "ticker_payload": 400
+    },
+    "events_by_symbol": {
+      "0GUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "1000BONKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AAVEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ACEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ADAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AEONUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AEROUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AKEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ALGOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ALLOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "APEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "APRUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "APTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ARBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ARKMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ARPAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ARUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ARXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ASTERUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ATHUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ATOMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AVAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AVAXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "AXSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "B2USDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BANKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BCHUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BEATUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BERAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BGBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BICOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BILLUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BLESSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BNBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BOMEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BROCCOLIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BRUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BSBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BSVUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BTCUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "BTWUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CAKEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CAPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CELRUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CFGUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CFXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CHIPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CHRUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "COAIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "COMPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "COTIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CROUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CRVUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CVCUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "CYSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "DASHUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "DATAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "DOGEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "DOSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "DOTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "EDGEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "EGLDUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "EIGENUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ENAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ENSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ETCUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ETHFIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ETHUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "EVAAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FARTCOINUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FETUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FFUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FIGHTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FILUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FLOCKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FLOKIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FOLKSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "FORMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GALAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GENIUSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GIGGLEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GRAMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GRASSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GRTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GRVTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "GUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "HBARUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "HOLOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "HUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "HYPEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ICPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "INJUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "IOSTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "IOTXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "IOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "JASMYUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "JTOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "JUPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "KAITOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "KASUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "KERNELUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "KITEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "KMNOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LABUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LDOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LINKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LITUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LSKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "LTCUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MAGMAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MARSCOINUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MELANIAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "METUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MINAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MONUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MOODENGUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MORPHOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "MUBARAKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "NEARUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "NILUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ONDOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ONEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "OPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ORCAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ORDIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PARTIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PENDLEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PENGUUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PEOPLEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PEPEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PHAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PLUMEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PNUTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "POLUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PONSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "POWERUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PROMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PUMPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "PYTHUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "RAVEUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "RAYUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "RENDERUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "REUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "REZUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "RIVERUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SEIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SENTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SHIBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SIRENUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SKYAIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SKYUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SLXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SNXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SOLUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SPXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "STEEMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "STGUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "STONKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "STRKUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "STXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SUIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SUPERUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "SYNUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TAOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TIAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TRBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TRIAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TRUMPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TRXUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "TUTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "UAIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "UBUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "UNIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "USELESSUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "USUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "VELVETUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "VETUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "VIRTUALUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "VTHOUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "VVVUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "WIFUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "WLDUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "WLFIUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "XLMUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "XMRUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "XPLUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "XRPUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ZAMAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ZECUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ZENUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ZESTUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ZETAUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "ZROUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "\u725b\u6765USDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      },
+      "\u9f99\u867eUSDT": {
+        "funding_observations": 4,
+        "open_interest_observations": 3,
+        "source_payloads": 3
+      }
+    },
+    "expected_adapter_outputs": {
+      "cross_exchange_snapshots": 200,
+      "funding_logical_unique_keys_by_source_endpoint": 800,
+      "funding_observations_before_idempotent_key_collapse": 800,
+      "instrument_metadata": 600,
+      "open_interest_observations": 600
+    },
+    "fixed_utc_timestamp": "2026-09-24T11:38:53.742093Z",
+    "funding_semantics": "zero-rate neutral test value; no direction asserted",
+    "path": "tests/fixtures/replays/phase6-replay-v2-phase2.jsonl",
+    "selected_symbol_count": 200,
+    "selected_symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "ZECUSDT",
+      "XRPUSDT",
+      "SOLUSDT",
+      "NEARUSDT",
+      "DOGEUSDT",
+      "HYPEUSDT",
+      "NILUSDT",
+      "SUIUSDT",
+      "BCHUSDT",
+      "UNIUSDT",
+      "PEPEUSDT",
+      "ENAUSDT",
+      "LSKUSDT",
+      "LTCUSDT",
+      "ADAUSDT",
+      "TRUMPUSDT",
+      "ONDOUSDT",
+      "WLDUSDT",
+      "AVAXUSDT",
+      "LINKUSDT",
+      "FILUSDT",
+      "MUBARAKUSDT",
+      "ARBUSDT",
+      "PENGUUSDT",
+      "TAOUSDT",
+      "PUMPUSDT",
+      "BNBUSDT",
+      "ONEUSDT",
+      "XLMUSDT",
+      "DOTUSDT",
+      "ALLOUSDT",
+      "AAVEUSDT",
+      "PONSUSDT",
+      "MARSCOINUSDT",
+      "AKEUSDT",
+      "INJUSDT",
+      "ZROUSDT",
+      "APTUSDT",
+      "HBARUSDT",
+      "RAYUSDT",
+      "ETCUSDT",
+      "SHIBUSDT",
+      "BTWUSDT",
+      "FARTCOINUSDT",
+      "WIFUSDT",
+      "USELESSUSDT",
+      "ASTERUSDT",
+      "ICPUSDT",
+      "TIAUSDT",
+      "METUSDT",
+      "XPLUSDT",
+      "BRUSDT",
+      "\u9f99\u867eUSDT",
+      "SEIUSDT",
+      "OPUSDT",
+      "DASHUSDT",
+      "ACEUSDT",
+      "RENDERUSDT",
+      "TUTUSDT",
+      "CRVUSDT",
+      "1000BONKUSDT",
+      "JUPUSDT",
+      "FETUSDT",
+      "KAITOUSDT",
+      "LITUSDT",
+      "XMRUSDT",
+      "BGBUSDT",
+      "PENDLEUSDT",
+      "VTHOUSDT",
+      "RIVERUSDT",
+      "VIRTUALUSDT",
+      "ZETAUSDT",
+      "\u725b\u6765USDT",
+      "COTIUSDT",
+      "FLOCKUSDT",
+      "VVVUSDT",
+      "ZENUSDT",
+      "JTOUSDT",
+      "SKYUSDT",
+      "FIGHTUSDT",
+      "POLUSDT",
+      "BOMEUSDT",
+      "ETHFIUSDT",
+      "BROCCOLIUSDT",
+      "EGLDUSDT",
+      "GRAMUSDT",
+      "PYTHUSDT",
+      "LDOUSDT",
+      "KERNELUSDT",
+      "ZAMAUSDT",
+      "CVCUSDT",
+      "BSVUSDT",
+      "STGUSDT",
+      "ORDIUSDT",
+      "GRASSUSDT",
+      "CYSUSDT",
+      "SUPERUSDT",
+      "ATOMUSDT",
+      "ALGOUSDT",
+      "PIUSDT",
+      "WLFIUSDT",
+      "CHIPUSDT",
+      "UAIUSDT",
+      "BEATUSDT",
+      "AEROUSDT",
+      "STEEMUSDT",
+      "TRXUSDT",
+      "SPXUSDT",
+      "UBUSDT",
+      "CELRUSDT",
+      "CAPUSDT",
+      "ARXUSDT",
+      "KASUSDT",
+      "B2USDT",
+      "IOSTUSDT",
+      "MINAUSDT",
+      "STONKUSDT",
+      "MONUSDT",
+      "MAGMAUSDT",
+      "ENSUSDT",
+      "BLESSUSDT",
+      "ARUSDT",
+      "BILLUSDT",
+      "SUSDT",
+      "GALAUSDT",
+      "CPUSDT",
+      "GUSDT",
+      "KMNOUSDT",
+      "MORPHOUSDT",
+      "FOLKSUSDT",
+      "PROMUSDT",
+      "REUSDT",
+      "CHRUSDT",
+      "0GUSDT",
+      "APEUSDT",
+      "STRKUSDT",
+      "GRTUSDT",
+      "RAVEUSDT",
+      "EIGENUSDT",
+      "CAKEUSDT",
+      "VETUSDT",
+      "APRUSDT",
+      "FLOKIUSDT",
+      "AVAUSDT",
+      "GRVTUSDT",
+      "ORCAUSDT",
+      "SKYAIUSDT",
+      "SENTUSDT",
+      "ZESTUSDT",
+      "BBUSDT",
+      "SIRENUSDT",
+      "FFUSDT",
+      "FORMUSDT",
+      "STXUSDT",
+      "SYNUSDT",
+      "GIGGLEUSDT",
+      "LABUSDT",
+      "PHAUSDT",
+      "HUSDT",
+      "COMPUSDT",
+      "PLUMEUSDT",
+      "REZUSDT",
+      "CROUSDT",
+      "AEONUSDT",
+      "AXSUSDT",
+      "SLXUSDT",
+      "JASMYUSDT",
+      "KITEUSDT",
+      "BANKUSDT",
+      "IOUSDT",
+      "TRIAUSDT",
+      "ATHUSDT",
+      "EVAAUSDT",
+      "VELVETUSDT",
+      "BSBUSDT",
+      "TRBUSDT",
+      "POWERUSDT",
+      "PARTIUSDT",
+      "DOSUSDT",
+      "ARPAUSDT",
+      "DATAUSDT",
+      "PEOPLEUSDT",
+      "EDGEUSDT",
+      "MELANIAUSDT",
+      "HOLOUSDT",
+      "BICOUSDT",
+      "CFXUSDT",
+      "GENIUSUSDT",
+      "PNUTUSDT",
+      "SNXUSDT",
+      "USUSDT",
+      "LAUSDT",
+      "CFGUSDT",
+      "IOTXUSDT",
+      "BERAUSDT",
+      "COAIUSDT",
+      "MOODENGUSDT",
+      "ARKMUSDT"
+    ],
+    "selected_symbols_sha256": "d9e20ddca229009018ea17da19f0a66d753ce247580c0a69fb3ba232a2b83ddf",
+    "sha256": "6c8263d4b895ac93d27b9582effe791aa618b48c388e944f927325d7b6e86cd0",
+    "source_payloads_by_exchange": {
+      "bitget": 401,
+      "bybit": 201,
+      "hyperliquid": 1
+    },
+    "values_are_synthetic_test_only": true
+  },
+  "phase3_runtime_paths": {
+    "orderbook_ingestion": "NOT_PRESENT_IN_ENABLED_PHASE3_RUNTIME; intentionally no synthetic fixture",
+    "public_trade_ingestion": "ENABLED_AND_REPLAYED"
+  },
+  "phase6_sources": {
+    "ai_provider": "NOT_CONFIGURED",
+    "macro": "NOT_CONFIGURED",
+    "news": "NOT_CONFIGURED",
+    "unlock": "NOT_CONFIGURED"
+  },
+  "resource_replay": {
+    "collector_engine_restart_cycles_per_resource_arm": 3,
+    "postgres_seed": "fresh empty disposable database per arm"
+  },
+  "runtime_clock": {
+    "exchange_event_range": "from phase1 cassette; Phase2 uses fixed_utc_timestamp",
+    "receive_order": "immutable source receive_order in Phase1 cassette; Phase2 events sorted by event_id"
+  }
+}

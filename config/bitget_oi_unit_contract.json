@@ -1,0 +1,11 @@
+{
+  "version": "BITGET_OI_UNIT_CONTRACT_V1",
+  "provider": "bitget",
+  "endpoint": "/api/v3/market/open-interest",
+  "category": "USDT-FUTURES",
+  "symbols": ["BTCUSDT", "ETHUSDT"],
+  "reported_unit": "USDT",
+  "confirmation_basis": "USER_CONFIRMED",
+  "confirmed_on": "2026-10-04",
+  "confirmation": "用户明确确认：确定持仓单位为USDT。仅应用于本次验收的BTC/ETH UTA持仓量；不表示Bitget官方验证。"
+}

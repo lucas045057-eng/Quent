@@ -1,0 +1,50 @@
+services:
+  quant-collector:
+    build: .
+    command: ["python", "-m", "quant_phase1.entrypoints.collector"]
+    env_file:
+      - .env
+    environment:
+      QUANT_COLLECTOR_READINESS_SYMBOLS: "${QUANT_COLLECTOR_READINESS_SYMBOLS:-BTCUSDT,ETHUSDT}"
+    networks:
+      - suixiangji-staging_default
+    mem_limit: 256m
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "python", "-m", "quant_phase1.healthcheck", "--component", "quant-collector"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  quant-engine:
+    build: .
+    command: ["python", "-m", "quant_phase1.entrypoints.engine"]
+    env_file:
+      - .env
+    networks:
+      - suixiangji-staging_default
+    mem_limit: 384m
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "python", "-m", "quant_phase1.healthcheck", "--component", "quant-engine"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  suixiangji-staging_default:
+    external: true

@@ -1,0 +1,26 @@
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "channel": "incremental_ticker.BTC-30OCT26-100000-C",
+    "data": {
+      "type": "snapshot",
+      "instrument_name": "BTC-30OCT26-100000-C",
+      "timestamp": 1790353800000,
+      "mark_price": 0.005012345678901234,
+      "mark_iv": 57.1234,
+      "bid_iv": 56.1,
+      "ask_iv": 58.2,
+      "underlying_price": 100125.125,
+      "open_interest": 12.34567890123456789,
+      "stats": {"volume": 0.1234567890123456789},
+      "greeks": {
+        "delta": 0.501,
+        "gamma": 0.00012,
+        "theta": -0.0123,
+        "vega": 0.2345,
+        "rho": 0.0456
+      }
+    }
+  }
+}
