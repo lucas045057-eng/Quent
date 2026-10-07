@@ -20,7 +20,9 @@ from quant_execution.contracts import ExecutionResultV1
 
 @pytest.fixture
 def store_db():
-    dsn = os.environ['TEST_POSTGRES_DSN']
+    dsn = os.environ.get('TEST_POSTGRES_DSN')
+    if not dsn:
+        pytest.skip('TEST_POSTGRES_DSN is required for isolated database tests')
     assert '127.0.0.1' in dsn and 'quant_phase9_test' in dsn
     schema = 'execution_test_' + uuid4().hex
     with psycopg.connect(dsn, autocommit=True) as conn:

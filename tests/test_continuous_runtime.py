@@ -389,12 +389,15 @@ def test_subscribed_socket_reader_starts_before_later_handshakes(monkeypatch):
             async def subscribe_many(self,args,*,batch_size):pass
             async def close(self):pass
         service=collector.CollectorService(Settings.from_env({"TRADING_MODE":"paper"}))
-        async def reader(socket,client):
+        async def reader(socket,client,*,group_context):
             if socket.index==0:first_read.set()
             await release.wait()
-        async def ping(socket,client):await release.wait()
+        async def ping(socket,client,*,group_context):await release.wait()
         monkeypatch.setattr(collector,'BitgetV3UtaWebSocket',Socket)
-        monkeypatch.setattr(service,'_ws_topic_groups',lambda:[['first'],['second']])
+        monkeypatch.setattr(service,'_ws_topic_groups',lambda:[
+            [{"topic":"ticker","symbol":"BTCUSDT"}],
+            [{"topic":"ticker","symbol":"ETHUSDT"}],
+        ])
         monkeypatch.setattr(service,'_receive_loop',reader)
         monkeypatch.setattr(service,'_ping_loop',ping)
         await service._start_ws_connections(object())

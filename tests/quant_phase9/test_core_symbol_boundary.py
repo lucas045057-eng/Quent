@@ -27,7 +27,9 @@ CANONICAL = "BTC-USDT-PERP"
 
 @pytest.fixture
 def database():
-    dsn = os.environ["TEST_POSTGRES_DSN"]
+    dsn = os.environ.get("TEST_POSTGRES_DSN")
+    if not dsn:
+        pytest.skip('TEST_POSTGRES_DSN is required for isolated database tests')
     info = conninfo_to_dict(dsn)
     assert info.get("host") in {"127.0.0.1", "localhost", "::1"}
     assert info.get("dbname") == "quant_phase9_test"

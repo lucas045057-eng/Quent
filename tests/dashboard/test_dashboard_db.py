@@ -9,7 +9,9 @@ from psycopg import sql
 @pytest.fixture
 def db_config(tmp_path):
     from dashboard.backend.config import DashboardConfig
-    dsn = os.environ['TEST_POSTGRES_DSN']
+    dsn = os.environ.get('TEST_POSTGRES_DSN')
+    if not dsn:
+        pytest.skip('TEST_POSTGRES_DSN is required for isolated database tests')
     schema = 'dashboard_test_'+uuid4().hex
     with psycopg.connect(dsn, autocommit=True) as conn:
         conn.execute(sql.SQL('CREATE SCHEMA {}').format(sql.Identifier(schema)))

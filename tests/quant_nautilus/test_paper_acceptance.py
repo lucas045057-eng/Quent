@@ -1,10 +1,14 @@
 import os
+import pytest
 from decimal import Decimal as D
 from quant_nautilus.paper_acceptance import run_acceptance
 
 
 def test_real_paper_acceptance_has_actual_restarts_memory_and_honest_smoke_label(tmp_path):
-    report=run_acceptance(os.environ['TEST_POSTGRES_DSN'],tmp_path,duration_seconds=1,formal=False)
+    dsn=os.environ.get('TEST_POSTGRES_DSN')
+    if not dsn:
+        pytest.skip('TEST_POSTGRES_DSN is required for isolated database tests')
+    report=run_acceptance(dsn,tmp_path,duration_seconds=1,formal=False)
     assert report['checks_passed'] is True
     assert report['formal_acceptance_pass'] is False
     assert report['acceptance_kind']=='FIXTURE_DRIVEN_ACCEPTANCE'

@@ -20,7 +20,8 @@ from quant_nautilus.realtime_paper_adapter import NautilusLocalPaperExecutionAda
 @pytest.fixture
 def adapter_db(tmp_path):
     dsn = os.environ.get("TEST_POSTGRES_DSN")
-    assert dsn, "TEST_POSTGRES_DSN is required"
+    if not dsn:
+        pytest.skip('TEST_POSTGRES_DSN is required for isolated database tests')
     schema = "paper_restart_" + uuid4().hex
     with psycopg.connect(dsn, autocommit=True) as setup:
         setup.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(schema)))

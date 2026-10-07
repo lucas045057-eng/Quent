@@ -15,7 +15,9 @@ def decision_db(tmp_path):
     from dashboard.backend.config import DashboardConfig
     from quant_phase1.db import apply_migrations
     from tests.quant_execution.test_persistence import seeded_intent
-    dsn = os.environ['TEST_POSTGRES_DSN']
+    dsn = os.environ.get('TEST_POSTGRES_DSN')
+    if not dsn:
+        pytest.skip('TEST_POSTGRES_DSN is required for isolated database tests')
     schema = 'dashboard_chain_'+uuid4().hex
     with psycopg.connect(dsn, autocommit=True) as admin:
         admin.execute(sql.SQL('CREATE SCHEMA {}').format(sql.Identifier(schema)))
