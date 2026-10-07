@@ -1996,3 +1996,72 @@ flowchart TD
 - TEST_ONLY/FIXTURE_ONLY：quant_data_layer.replay、quant_nautilus.acceptance/spike/fixture_setup/paper_acceptance、tests replay runners；保留。
 - LEGACY_ACTIVE：quant_phase1.stage1 与多 Phase enrich；Phase9DeterministicEvaluator、paper_v1、旧 Jev 持久化和 compatibility gate，仍被旧测试、包装或现行 snapshot 使用。
 - UNKNOWN：本机精确 Compose overlay、未来跨交易所/期权/onchain产品需求、是否有外部调用未公开函数。整包 KEEP。
+
+## 生产调用图和数据库 owner（人工核对）
+
+
+```text
+docker-compose.yml:24 / docker-compose.local.yml:18
+  → quant_phase1.entrypoints.collector.CollectorService
+    → Phase1 Bitget REST/WS + gap recovery → Phase1Repository → symbols/klines/market_snapshots
+    → Phase3 public streams + rollups + Bybit CVD → Phase3Repository
+    → Phase4Runtime [settings.phase4_enabled] → liquidations/long-short/basis
+    → Phase6CollectorRuntime [phase6_enabled] → external context
+    → Phase7CollectorRuntime [phase7_enabled OR bitget_sbe_flow_enabled]
+        → onchain/Binance spot OR Bitget SBE → Phase7Repository + Phase3Repository + proof receipts
+    → Phase8CollectorRuntime [Phase8Settings.enabled] → Deribit options
+
+docker-compose.yml:46 / Dockerfile:15
+  → quant_phase1.entrypoints.engine
+    → Phase1Repository.load_latest_market_batch
+    → strategies.runtime.screen_batch → MarketView → StrategyRuntimeV2 / screen_market
+    → strategies.runtime.stage1_results → Stage1Result (compatibility DTO)
+    → Phase1Repository.insert_stage1_result → Stage1/outbox
+    → Phase2DerivativeRuntime [phase2_enabled] → OI/Funding/cross exchange
+    → Phase3/4 enrichments [enabled] + Phase5/6/7 context hooks
+    → Phase9EngineRuntime [phase9.enabled]
+      → Phase9StrategyV2Evaluator (engine.py:729)
+      → CanonicalResearchFactory → V2 refresh/analyzer/evidence/execution policy
+      → Phase9DeterministicEvaluator._snapshot (runtime.py:737/:744)
+      → immutable snapshots / leases / lifecycle / revalidation / strategy decisions
+
+scripts/start-realtime-paper.sh:79 (PowerShell wrapper equivalent)
+  → python -m quant_realtime_paper → cli → build_default_runtime
+    → load_active_phase9_projection (durable ACTIVE decision/read bridge)
+    → RiskConfigLoader + V2 trade_plan → approve_intent
+    → ExecutionStore.reserve/persist
+    → NautilusLocalPaperExecutionAdapter
+      → OwnedLocalPaperRuntime.operation → LocalPaper
+        → SandboxSession → NautilusIntentAdapter → SandboxExecutionClient
+        → execution.funding calculator / ledger
+    → SessionStore (SQLite observability/session state; not portfolio authority)
+
+scripts/start-dashboard.ps1
+  → dashboard.backend.__main__ / app
+    → DatabaseReader (SELECT-only execution/Phase9/strategy artifacts)
+    → PaperReader (old Nautilus CLI fixture artifacts/process check)
+    → service.py:158/:160 → SessionStore.readonly_snapshot (独立 /api/realtime-paper)
+```
+
+PostgreSQL connection boundary是 `quant_phase1/db.py` schema/migration、psycopg connections、`quant_data_layer/db_admission.py` bounded write admission。各 Phase repository拥有不同表/写语义。Dashboard `backend/db.py:14–32` 白名单只读 execution、Phase9、strategy；`:44` default_transaction_read_only。Paper `SessionStore` SQLite记录运行 session/cycle/events，ExecutionStore PostgreSQL拥有 intent/result/position/account/journal，不能当作重复 Paper DB 删除。
+
+
+## Phase 生命周期
+
+
+|模块|分类|明确证据|行动|
+|---|---|---|---|
+|Phase1 collector/repository/contracts/market|ACTIVE|Collector/Engine compose，V2 batch + data models；Phase5 market_context.py:13/14 用 closed_bars/structure|KEEP|
+|Phase1 old Stage1 `evaluate_stage1`、pipeline.run_stage1|TEST_ONLY / historical research algorithm|只在 pipeline.run_stage1→evaluate_stage1；当前 Engine/Paper 调 screen_batch；`tests/strategies/test_runtime_replacement.py:13/:38` 防旧 producer回流|冻结算法；Stage1Result ACTIVE，不能删文件夹|
+|Phase2|ACTIVE（条件）|Engine :813/:858；derivative contracts/normalization被 V2使用|KEEP|
+|Phase3|ACTIVE（条件），同时 SBE也使用其表/契约|Collector :324/:336/:1406；Engine :476/:591；SBE :405|KEEP|
+|Phase4|ACTIVE（条件）|Collector :307/:310；Engine :387–409/:595|KEEP|
+|Phase5|ACTIVE（条件）|Engine :163/:266/:743；市场计算仍使用 Phase1 helpers|KEEP|
+|Phase6|ACTIVE（条件）|Collector :316/:319；Engine :322/:341/:861；旧 Jev复用 Phase6 AI契约|KEEP|
+|Phase7|ACTIVE（条件，含独立 SBE开关）|Collector :288/:1558；Engine :412/:871；runtime :542 SBE、:1326 spot|KEEP|
+|Phase8|ACTIVE（条件）|Collector :299–305/:1563；options context保留研究用途|KEEP|
+|Phase9 supervisor/snapshot/intake/lifecycle/revalidation + V2 evaluator|ACTIVE|Engine :719–740，Realtime bridge :162，strategies persistence :51|KEEP|
+|Phase9 old deterministic __call__/paper_v1 semantic logic|LEGACY_ACTIVE、部分 TEST_ONLY|old direct evaluator主要 tests/acceptance；V2仍实例化类取 _snapshot；Paper bridge/wiring/risk仍有V1兼容分支|冻结；只能逐方法分离，不能删类/文件|
+|Phase9 replay/fixture/compatibility|TEST_ONLY / 正式测试能力|scripts/run_phase9_replay_v1.py:10、acceptance.py；compatibility gate exact protected set|保留有效测试，先审 acceptance用途|
+
+源码默认 Settings Phase2–7 多为 False（config.py:215/:231/:248/:276/:317/:344），但 compose local显式打开2–6（:22–26/:103–107），Phase7/Phase9由变量选择（:28/:111/:121）。这说明「默认 false」不构成 dead evidence。当前 WSL运行选择未读取，UNKNOWN。

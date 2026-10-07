@@ -4,6 +4,8 @@
 分支：integration/nautilus-v1
 审计基线：28f120a4（本轮变更前）
 
+历史状态说明：本文描述 2026-09-29 的实现与验收状态；当前架构与依赖以根目录六份 AI 技术债清理报告为准。
+
 ## 1. 当前架构
 
 本轮沿用现有 Phase1–8 公共数据链，没有新增 collector、行情表、OI/Funding、Trades/CVD 或 canonical feature pipeline。
@@ -15,13 +17,13 @@
       → SQLite operations ledger（仅保存会话、周期、决策和事件）
       → Dashboard GET /api/realtime-paper
 
-既有预期下游 Phase9 → Risk → Nautilus Adapter → Local Paper 没有与 Phase1 engine 形成生产运行链。本轮未伪造这段连接，也未改变旧 Local Paper 行为。源码审计见 current-strategy-map.md。
+既有预期下游 Phase9 → Risk → Nautilus Adapter → Local Paper 没有与 Phase1 engine 形成生产运行链。本轮未伪造这段连接，也未改变旧 Local Paper 行为。源码审计见历史 [current-strategy-map.md](archive/current-strategy-map.md)。
 
 ## 2. Strategy 真实规则
 
 Phase1 Stage1 使用已关闭的 5m/15m/1H/4H Kline，并检查成交额、spread 与多周期结构。Freshness 按阶段/数据类型判定：Stage1 ticker soft/hard 为 30/60 秒；闭合 Kline 沿用各周期现有 grace；Phase9 当前价格证据 hard 上限 60 秒；Risk/Execution quote hard 上限仍为 5 秒。没有把所有行情全局要求为 ≤5 秒。Stage1 只将 symbol 分类为 A/B/C/D；A 是深度分析候选，不是买入信号。Phase9 默认关闭，当前没有启用且获批的 LONG/SHORT pattern，因此当前生产规则没有 LONG 或 SHORT 下单条件。
 
-Stage1 按顺序执行硬过滤：无成交额为 D；spread 大于 0.2% 为 C；1H/4H 任一为 RANGE 或方向冲突为 C；A 还需 spread ≤0.15%、5m range/ATR ≥2、5m EMA(9/21) 与 1H/4H 同向；否则为 B/等待。Volume 虽被列为输入，但不参与该分类公式。详细规则和源码位置见 current-strategy-map.md。
+Stage1 按顺序执行硬过滤：无成交额为 D；spread 大于 0.2% 为 C；1H/4H 任一为 RANGE 或方向冲突为 C；A 还需 spread ≤0.15%、5m range/ATR ≥2、5m EMA(9/21) 与 1H/4H 同向；否则为 B/等待。Volume 虽被列为输入，但不参与该分类公式。详细规则和源码位置见历史 [current-strategy-map.md](archive/current-strategy-map.md)。
 
 ## 3. Evidence
 

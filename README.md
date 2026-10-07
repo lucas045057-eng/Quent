@@ -17,3 +17,7 @@ Phase 1 has no private API client, API key requirement, order route, position ro
 ```text
 python -m pytest -q
 ```
+
+## Current cleanup baseline
+
+See [cleanup report](AI_TECH_DEBT_CLEANUP_REPORT.md), [audit](AI_TECH_DEBT_AUDIT.md), [dependency map](MODULE_DEPENDENCY_MAP.md), [configuration authority](CONFIG_SOURCE_OF_TRUTH.md), [entrypoints](ENTRYPOINT_MAP.md), and [Nautilus retention](NAUTILUS_RETENTION_DECISION.md). Historical reports are indexed in [docs/archive](docs/archive/README.md). Cleanup preserves the current data and safety boundaries; Freqtrade is not implemented.

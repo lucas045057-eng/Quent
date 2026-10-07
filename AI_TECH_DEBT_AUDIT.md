@@ -154,8 +154,45 @@ AST 扫描 broad except：180 处，其中单纯 pass/return body：36。print�
 
 首轮（Windows CRLF checkout，经 WSL Python 3.12）：2148 passed / 21 failed / 128 skipped / 99 errors。前端：17 passed（4 files）；tsc typecheck 通过。缺 TEST_POSTGRES_DSN、受哈希保护制品被 CRLF 转换、以及旧验收硬编码原仓库 commit 是主要原因；复测和具体残留见清理报告。不会用真实库补测试 DSN，不重签旧 acceptance。
 
-WSL 原工作树 `/home/lucas045057/projects/quant-a6-secret-scan-fix` 干净，HEAD `9d2f11a`，origin 指向本地旧 Windows 工作树；未修改。现有 Docker PostgreSQL/AgentOps 未重启、删除或清理。\.env.example 是模板，不是真实 .env。迁移 001–021 全部 KEEP。secret 审计详见清理报告；历史凭据扫描不等于当前跟踪文件扫描。
+WSL 原工作树 `/home/lucas045057/projects/quant-a6-secret-scan-fix` 干净，HEAD `9d2f11a`，origin 指向本地旧 Windows 工作树；未修改。现有 Docker PostgreSQL/AgentOps 未重启、删除或清理。.env.example 是模板，不是真实 .env。迁移 001–021 全部 KEEP。secret 审计详见清理报告；历史凭据扫描不等于当前跟踪文件扫描。
 
 ## 清理候选证明与计划
 
 只删除无 import/CLI/config/test/subprocess caller 的四个小符号与冻结日期的一次性 secret audit；保留正式验收扫描器。根目录历史报告分批移动到 docs/archive，不搬受 formal contract 保护路径或原测试直接读取的报告。不改阈值、RR、A/B/C、OI/Funding/CVD 含义。
+
+## 独立审计补充
+
+
+
+|概念|采集/计算的正式 owner|持久化/读取 owner|调用证据与保留说明|
+|---|---|---|---|
+|Price / Ticker|`quant_phase1/adapters/bitget_v3/parsers.py:112`，REST/WS；契约 `quant_phase1/contracts.py:90`|`quant_phase1/repositories.py:100` 写 market_snapshots；`:268` load_latest_market_batch|`entrypoints/collector.py:265` CanonicalStore、`:813` 周期写入；Engine `:568`、Paper assembly `:126` 从 canonical batch 读取。ACTIVE KEEP。|
+|Kline|`quant_phase1/adapters/bitget_v3/parsers.py:143`；`contracts.py:121` Candle；`pipeline.py:26` MarketDataCollector；closed bars/gap recovery|`repositories.py:68` upsert_candles → klines，`:268` canonical batch；migration 001|Collector `:739` 标 closed_klines admission，`:1083` 读闭合历史、`:1210` reconciliation；`strategies/market_view.py:54` structure_window 读取。ACTIVE KEEP。|
+|OI|`quant_phase2/adapters/bitget.py:25` 等公共 adapter；`normalization.py:22` normalize_open_interest；`unit_contracts.py:9` 源单位契约；`contracts.py:91` OIObservation|`quant_phase2/persistence.py:71` 写 open_interest；`:170` 恢复历史；`quant_phase9/sources/phase2.py:36` 验证已持久化归一化；`strategies/sources.py:28` 消费|Engine `:813` Phase2DerivativeRuntime；Bitget adapter `:135/:237/:338` 调正式 normalization；V2 sources `:56` 复用 `_valid_oi_normalization`。不能以显示层再次计算验证为重复采集删掉。|
+|Funding（市场率）|`quant_phase2/funding.py:19` normalize_funding_to_8h；adapter `bitget.py:105/:156`；`contracts.py:126` FundingObservation|`quant_phase2/persistence.py:99` funding_rates；V2 `strategies/sources.py:82` 读取/验证标准化率|与 execution funding cash ledger 不同语义。ACTIVE KEEP；V2 源当前重复算 8h 公式用于一致性验证，后续可提取共同验证函数，但不能直接换掉 freshness/interval 语义。|
+|Perpetual Flow|多交易所旧公共 trade：`quant_phase3/contracts.py:68` CanonicalTrade、`flow.py:81` TradeFlowWindowBuilder、runtime；当前 Bitget SBE：`quant_phase7/bitget_sbe.py:190` worker、`:161` validate_flow_proof|`quant_phase3/persistence.py:68` → trade_flow_windows；SBE `bitget_sbe.py:405` 写同表|Collector `:325/:336` Phase3 trade runtimes，`:1406` 推 CVD；Phase7 runtime `:542` 创建 SBE worker。V2 `strategies/sources.py:89–110` **需要 SBE coverage proof**，旧可用 trade 行不能代替。两条 ingestion 语义/证据不同，保留。|
+|Spot Flow|`quant_phase7/spot_flow.py:192` aggregate_spot_window（Binance source），`bitget_sbe.py`（Bitget source）|`quant_phase7/persistence.py:882` → phase7_spot_flow_windows；SBE `:403` 写同表|Phase7 runtime `:1326` aggregation；V2 sources 与 perp 共用验证闭合 candle proof。跨 source 不能合并成一条流。|
+|CVD|`quant_phase3/cvd.py:29` BybitCVDBuilder：完整1m delta 的 15m/1H/4H/24H 滚动总和；`quant_phase7/spot_flow.py:192` 接 previous_cvd：source-specific spot 累计|cvd_snapshots（migration 008）；phase7_spot_flow_windows.cvd（migration 012）；Phase7 repository `:545` load_latest_spot_cvd|Collector `:322/:710/:1406` 实际构造/恢复/计算；Phase7 runtime `:1321/:1334` 读上次累计。Bitget SBE `:398` 显式 cvd=None，V2 使用 delta ratio，不能称其已替代 Bybit CVD。两种 CVD 不同 scope/窗口，KEEP。|
+|Instrument|Phase1 `contracts.py:66` 原始市场元数据 → symbols；Phase2 `contracts.py:64` venue metadata → exchange_instruments；`quant_instruments/identity.py:31` registered identity owner|Phase1 repository `:27` 写 symbols；Phase2 repository `:46` 写 exchange_instruments；identity resolver 查询两表|Phase9 sources/phase2 `:83`、phase3 `:50`、phase4 `:36` 用 resolver。V2 `strategies/market_view.py:9` 是只读策略 projection；Execution `contracts.py:48` 是交易规格；Nautilus `instruments.py:8` 是框架 adapter；不是四套竞争 canonical model。可收敛边界转换，不可删消费者 DTO。|
+|Risk|`quant_execution/risk_config.py:21` RiskConfigV2，`:96` reload loader，`:122` 转 RiskPolicyV1；`risk.py:65` approve_intent 唯一 sizing/批准边界|`quant_execution/persistence.py:57` reserve 在持久化层落实账户/notional/slot/fence；`strategies/execution/execution_policy.py:35` 是策略证据 gate|Paper assembly `:336/:428` 读 risk config、`:476–479` trade plan/resolve risk；wiring `:221` 检查 policy 后 approve_intent。策略 PASS 不等于风险批准；reserve 防竞态不是重复 Risk。|
+
+正式 data quality/freshness owner：`quant_data_layer/freshness.py:19` 和 `FRESHNESS_POLICY`。Phase1 config、Paper config、Phase2 runtime、Risk 均引用它；strategies/refresh.py:7 的 MAX_AGE_SECONDS 仍有局部结构/refresh 时效映射，属于有消费者的独立策略阶段约束，当前不修改数值。
+
+
+## 历史报告分类
+
+- KEEP：README、当前 V2/Operations/Integration 文档、21 migrations、5 份有路径契约的根报告、用户历史/配置。
+- ARCHIVE：44 份旧报告/设计和旧 current-strategy-map；清单见 docs/archive/README.md。
+- DELETE：仅无调用的一次性旧 secret audit 与四个 dead 叶子符号；未找到可确认完全重复且无历史价值的整份文档，未凭命名删除。
+- 既有 outputs/docs、旧实现计划仍有设计引用；本轮不做额外目录搬迁。
+
+## Python 依赖与生成资产
+
+
+
+- Runtime-required generated assets: `dashboard/frontend/dist/index.html`, all referenced hashed assets, `dist/build-stamp.json`. `src/dashboard/backend/lifecycle.py:18-40` verifies source and asset hashes before start; `app.py:109-124` serves those files. Frontend build script (`package.json:9`) regenerates both bundle and stamp. Static checker validated 34 hashes. Source files remain required by the stamp even when generated JS serves the UI.
+- Test-required artifacts: replay fixtures/manifests, policies/approval fixtures and provenance-listed builder/profile scripts. Historical `.superpowers`/artifacts/user state cannot be classified by ignored status alone; archive/delete only after checking acceptance evidence references.
+- `outputs/docs/` are authored early design documentation, not application runtime. `docs/superpowers/plans/2026-09-20-phase1-implementation.md:11,152` references them. ARCHIVE historical design as one group with relative links; not proven duplicate or safe DELETE.
+- All base Python dependencies have direct production imports (AST counts): aiohttp 19; websockets 3; pydantic 14; psycopg 74. Optional FastAPI 4, uvicorn 1, nautilus_trader 46. KEEP; no unused-library deletion supported.
+- `httpx` has zero direct production imports but `fastapi.testclient.TestClient` appears in at least five dashboard test files (`test_dashboard_api.py:8`, `test_realtime_paper.py:9`, `test_dashboard_events.py:71`, `test_dashboard_decisions.py:77`, `test_dashboard_launcher.py:86`). It is the TestClient backend requirement. Do not remove and lose tests; possible later split into dashboard-test extra if install docs and full API tests move together. Current dashboard install command explicitly installs dev,nautilus,dashboard (`docs/DASHBOARD_V1_OPERATIONS.md:46`).
+- Frontend `react-is` has no obvious direct source import but may be recharts runtime dependency; keep until installed dependency tree/bundler evidence establishes optionality. No dependency install/network undertaken.
