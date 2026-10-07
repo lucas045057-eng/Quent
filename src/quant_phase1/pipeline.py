@@ -110,13 +110,3 @@ def run_stage1(
     ]
 
 
-def run_strategy_v2(batch: MarketDataBatch, *, projections=(), policy=None, now=None):
-    """Reuse the collector batch for the V2 strategy boundary.
-
-    Runtime activation is owned by the paper assembly, independently of
-    collector and storage contracts.
-    """
-    from strategies.market_view import build_market_view
-    from strategies.screener.batch_screener import screen_market, ScreeningPolicyV2
-    view=build_market_view(batch,tuple(projections),as_of=now or batch.collected_at)
-    return screen_market(view,policy=policy or ScreeningPolicyV2())

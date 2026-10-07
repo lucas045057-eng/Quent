@@ -46,13 +46,6 @@ def normalize_provider_observations(payload, *, symbol, provider, required_kinds
     return tuple(rows)
 
 
-def unavailable_provider_observations(capability, *, symbol, env):
-    configured=capability.key_env is None or bool(env.get(capability.key_env))
-    return tuple(MarketObservation(symbol=symbol,kind=kind,provider=capability.provider,
-        source_ref=capability.base_url,availability='UNAVAILABLE' if configured else 'NOT_CONFIGURED',
-        reason='SOURCE_NOT_FETCHED' if configured else 'MISSING_LOCAL_API_KEY') for kind in capability.supported_kinds)
-
-
 class ProviderReceipt(Record):
     provider: str
     symbol: str

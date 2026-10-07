@@ -15,10 +15,6 @@ class AdapterSchemaError(ValueError):
     pass
 
 
-class SchemaVerificationRequired(AdapterSchemaError):
-    pass
-
-
 def decimal(value: Any, field: str) -> Decimal:
     try:
         return Decimal(str(value))

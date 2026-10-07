@@ -170,10 +170,6 @@ def _feed(kind: str, symbol: str, source: str, event_time: datetime | str | None
         "details": _clean(details or {}),
     }
 
-def _stage1_payload(result) -> dict[str, Any]:
-    return _clean(result)
-
-
 def _git_commit(root: Path) -> str | None:
     try:
         import subprocess
