@@ -4,16 +4,16 @@
 
 ## 当前机器：启动与退出
 
-在 Windows PowerShell 中运行（仓库位于默认 WSL Ubuntu 路径时）：
+在 Windows PowerShell 中运行。用实际 WSL 仓库路径和项目 Python 环境替换下面的 `/path/to`；这两个参数必填，启动器不再猜测开发者机器路径：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File '\\wsl.localhost\Ubuntu\home\lucas045057\projects\quant-integration-nautilus-v1\scripts\start-dashboard.ps1'
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File '\\wsl.localhost\Ubuntu\home\lucas045057\projects\quant-integration-nautilus-v1\scripts\stop-dashboard.ps1'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-dashboard.ps1 -RepoPath '/path/to/Quent' -PythonPath '/path/to/project-venv/bin/python'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\stop-dashboard.ps1 -RepoPath '/path/to/Quent' -PythonPath '/path/to/project-venv/bin/python'
 ```
 
 浏览器访问 <http://127.0.0.1:3000>。重复启动会返回现有进程；重复停止安全返回 STOPPED。启动器只停止自己的 PID、启动时间、实例 ID、工作目录与命令行全部匹配的 Dashboard 进程。端口被其他程序占用时退出，不结束其他程序。
 
-当前默认 WSL Ubuntu 项目为 `/home/lucas045057/projects/quant-integration-nautilus-v1`，独立 Python 环境为 `/home/lucas045057/projects/quant-dashboard-v1-env`。可以通过 `-Distro`、`-RepoPath`、`-PythonPath`、`-Port` 指定另一套本地路径。只绑定 127.0.0.1。
+默认发行版为 Ubuntu、端口为 3000；通过 `-Distro`、`-Port` 覆盖。`-RepoPath`、`-PythonPath` 使用 Linux 绝对路径。只绑定 127.0.0.1。
 
 Windows 启动器保留一个隐藏的 WSL 宿主，让 WSL 在 Dashboard 运行期间保持活动；停止后台后宿主自行退出。没有修改 WSL、Docker 或原交易服务的配置。
 

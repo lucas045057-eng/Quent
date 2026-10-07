@@ -1,7 +1,7 @@
 param(
     [ValidatePattern('^[A-Za-z0-9_. -]+$')][string]$Distro='Ubuntu',
-    [ValidatePattern('^/[A-Za-z0-9_./ -]+$')][string]$RepoPath='/home/lucas045057/projects/quant-integration-nautilus-v1',
-    [ValidatePattern('^/[A-Za-z0-9_./ -]+$')][string]$PythonPath='/home/lucas045057/projects/quant-dashboard-v1-env/bin/python',
+    [Parameter(Mandatory=$true)][ValidatePattern('^/[A-Za-z0-9_./ -]+$')][string]$RepoPath,
+    [Parameter(Mandatory=$true)][ValidatePattern('^/[A-Za-z0-9_./ -]+$')][string]$PythonPath,
     [ValidateRange(1024,65535)][int]$Port=3000
 )
 $ErrorActionPreference='Stop'
