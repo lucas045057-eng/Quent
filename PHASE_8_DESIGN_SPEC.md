@@ -362,4 +362,4 @@ Phase 8 must keep bounded local work and current PostgreSQL 768 MiB / Collector 
 - [Full-chain markprice options channel](https://docs.deribit.com/subscriptions/market-data/markpriceoptionsindex_name)
 - [Supported index-name discovery method](https://docs.deribit.com/api-reference/market-data/public-get_index_price_names)
 - [Official markprice.options seed/change behavior](https://support.deribit.com/hc/en-us/articles/25944782980253-25-June-2021)
-- [Current measured counts and distributions](PHASE_8_BASELINE_AUDIT.md)
+- [Current measured counts and distributions](docs/archive/PHASE_8_BASELINE_AUDIT.md)
