@@ -15,6 +15,13 @@ Availability = Literal["AVAILABLE", "UNAVAILABLE", "NOT_CONFIGURED", "ERROR", "P
 Freshness = Literal["FRESH", "DEGRADED", "STALE", "UNKNOWN"]
 Coverage = Literal["COMPLETE", "PARTIAL", "UNKNOWN"]
 
+def discard_retired_news_mode(value):
+    """Read old settings without mutating inputs or restoring retired gates."""
+    if isinstance(value, dict):
+        value = dict(value)
+        value.pop("news_mode", None)
+    return value
+
 class Record(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
     schema_version: str = "STRATEGY_V2"
@@ -168,8 +175,8 @@ class AnalysisRequest(Record):
     @model_validator(mode="before")
     @classmethod
     def discard_retired_event_requirements(cls,value):
+        value = discard_retired_news_mode(value)
         if isinstance(value,dict):
-            value=dict(value);value.pop('news_mode',None)
             retired={'EVENT_COVERAGE','EXCHANGE_EVENT_COVERAGE','MACRO_COVERAGE'}
             if 'required_kinds' in value:value['required_kinds']=tuple(k for k in value['required_kinds'] if k not in retired)
         return value

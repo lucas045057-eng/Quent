@@ -2,7 +2,7 @@
 from decimal import Decimal as D
 from typing import Literal
 from pydantic import Field, model_validator
-from strategies.contracts import Record, ExecutionPolicyResult, AnalysisSnapshot
+from strategies.contracts import Record, ExecutionPolicyResult, AnalysisSnapshot, discard_retired_news_mode
 from strategies.evidence.evidence_chain import build_evidence_chain, MarketHypothesis
 from strategies.analysis.deep_analyzer import HORIZONS
 
@@ -21,9 +21,7 @@ class ExecutionPolicyV2(Record):
     @model_validator(mode="before")
     @classmethod
     def discard_legacy_news_mode(cls,value):
-        if isinstance(value,dict):
-            value=dict(value);value.pop('news_mode',None)
-        return value
+        return discard_retired_news_mode(value)
     @model_validator(mode="after")
     def valid_scope(self):
         if not self.allowed_symbols or len(set(self.allowed_symbols))!=len(self.allowed_symbols):

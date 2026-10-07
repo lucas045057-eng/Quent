@@ -4,7 +4,7 @@ from decimal import Decimal as D
 from typing import Literal
 from pydantic import Field, model_validator
 from quant_phase6.ai import AIService, AIRequest, complete_strategy_analysis
-from strategies.contracts import Record, StructuredTradeThesis, Scenario, TriggerRule
+from strategies.contracts import Record, StructuredTradeThesis, Scenario, TriggerRule, discard_retired_news_mode
 from strategies.evidence.evidence_chain import build_evidence_chain, MarketHypothesis, _valid
 from .prompts import analysis_prompt
 
@@ -21,9 +21,7 @@ class AnalysisPolicyV2(Record):
     @model_validator(mode="before")
     @classmethod
     def discard_legacy_news_mode(cls,value):
-        if isinstance(value,dict):
-            value=dict(value);value.pop('news_mode',None)
-        return value
+        return discard_retired_news_mode(value)
 
 class AnalystProposal(Record):
     horizon: Literal["1_3H","3_8H","8_24H"]

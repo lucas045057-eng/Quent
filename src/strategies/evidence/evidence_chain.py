@@ -1,7 +1,7 @@
 """Conjunctive market hypotheses with provenance; no indicator vote or probability."""
 from decimal import Decimal as D
 from pydantic import Field, model_validator
-from strategies.contracts import Record, EvidenceChain, EvidenceNode, MarketObservation
+from strategies.contracts import Record, EvidenceChain, EvidenceNode, MarketObservation, discard_retired_news_mode
 from strategies.refresh import MAX_AGE_SECONDS
 from strategies.canonical_validation import fresh_receipt
 
@@ -18,10 +18,7 @@ class MarketHypothesis(Record):
     @model_validator(mode="before")
     @classmethod
     def discard_legacy_news_mode(cls, value):
-        if isinstance(value, dict):
-            value = dict(value)
-            value.pop("news_mode", None)
-        return value
+        return discard_retired_news_mode(value)
 
     @property
     def required_kinds(self):

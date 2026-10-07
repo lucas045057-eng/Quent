@@ -108,5 +108,3 @@ def run_stage1(
         )
         for result in results
     ]
-
-
