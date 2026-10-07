@@ -36,8 +36,18 @@ def test_secret_scan_covers_new_execution_adapter_and_research_sources(tmp_path)
 
 def test_c1_task9_names_the_actual_milestone_commit_not_later_integration_head():
     import subprocess
-    from scripts.run_phase9_acceptance import write_implementation_completion
+    from scripts.run_phase9_acceptance import write_implementation_completion, _TASK_COMMIT_PREFIXES
     root=Path(__file__).resolve().parents[2]
+    # Source-snapshot uploads do not contain the original Phase9 milestone
+    # history. Keep this evidence test opt-in to that history; do not replace
+    # historical commits with the later snapshot or manufacture acceptance.
+    for prefix in _TASK_COMMIT_PREFIXES.values():
+        result = subprocess.run(
+            ['git','-C',str(root),'rev-parse','--verify',prefix+'^{commit}'],
+            capture_output=True, check=False,
+        )
+        if result.returncode:
+            pytest.skip('Original Phase9 milestone Git history is unavailable in this source snapshot')
     def git(*args):
         return subprocess.check_output(['git','-C',str(root),*args],text=True).strip()
     head=git('rev-parse','HEAD')
